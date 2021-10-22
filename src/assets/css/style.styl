@@ -1,0 +1,20 @@
+$normal-blue = #4C8BFF;
+$normal-gray = #919CAD;
+$normal-black = #212832;
+$normal-green = #32BE7F;
+$normal-red = #FF4D4D;
+flex-box($justify-content = flex-start, $align-items = center) {
+ display: flex;
+ justify-content: $justify-content;
+ align-items: $align-items;
+}
+.bg {
+ background-repeat: no-repeat;
+ background-size: 100% 100%;
+ background-position: center;
+}
+.text-ellipsis {
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}

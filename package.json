@@ -1,0 +1,57 @@
+{
+  "name": "nash-ui",
+  "version": "1.0.0",
+  "description": "nash-ui",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
+    "serve": "webpack-dev-server --config build/webpack.dev.js"
+  },
+  "keywords": [
+    "ui",
+    "web"
+  ],
+  "author": "nash 370295005@qq.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.15.6",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.2.0",
+    "eslint": "7.6.0",
+    "file-loader": "^6.2.0",
+    "happypack": "^5.0.1",
+    "html-webpack-plugin": "^5.3.2",
+    "html-webpack-plugin-for-multihtml": "^2.30.2",
+    "loader-utils": "^2.0.0",
+    "mini-css-extract-plugin": "^2.2.2",
+    "postcss-loader": "^6.1.1",
+    "postcss-plugin-px2rem": "^0.8.1",
+    "sass": "^1.43.3",
+    "sass-loader": "^12.2.0",
+    "style-loader": "^3.2.1",
+    "stylus": "^0.55.0",
+    "stylus-loader": "^6.2.0",
+    "terser-webpack-plugin": "^5.2.4",
+    "url-loader": "^4.1.1",
+    "vconsole": "3.3.2",
+    "vue": "^2.6.14",
+    "vue-loader": "^15.9.8",
+    "vue-router": "^3.5.2",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.52.0",
+    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1"
+  },
+  "dependencies": {
+    "better-scroll": "^2.4.2"
+  }
+}
