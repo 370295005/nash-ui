@@ -14,7 +14,9 @@
 </template>
 <script>
 const EVENT_NAME = 'toggle'
+const COMPONENTS_NAME = 'POPUP'
 export default {
+  name: COMPONENTS_NAME,
   model: {
     prop: 'visible',
     event: EVENT_NAME
@@ -61,6 +63,7 @@ export default {
 }
 </script>
 <style lang="stylus">
+@import '../../assets/css/default.styl'
 .nash-popup-fade-enter, .nash-popup-fade-leave-active {
   opacity: 0;
 }
@@ -103,7 +106,7 @@ export default {
     height: 100%;
     position: absolute;
     top: 0;
-    background-color: #25262d;
+    background-color: $mask-bg;
     opacity: 0.4;
     z-index: 900;
     transition: opacity 0.3s ease-in-out;

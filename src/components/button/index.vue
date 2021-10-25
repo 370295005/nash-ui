@@ -4,7 +4,9 @@
   </div>
 </template>
 <script>
+const COMPONENTS_NAME = 'BUTTON'
 export default {
+  name: COMPONENTS_NAME,
   props: {
     text: {
       default: '按钮'
@@ -54,7 +56,7 @@ export default {
 }
 </script>
 <style lang="stylus">
-@import '@/assets/css/style.styl';
+@import '../../assets/css/default.styl'
 btn-active($bg) {
   &:active {
     background-color: $bg;

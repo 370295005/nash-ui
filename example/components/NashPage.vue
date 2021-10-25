@@ -1,6 +1,6 @@
 <template>
   <div class="nash-ui-page">
-    <div class="back" @click="goBack"><img src="../assets/images/icon_navbar_back@2x.png" /></div>
+    <div class="back" @click="goBack" v-show="showBack"><img src="../assets/images/icon_navbar_back@2x.png" /></div>
     <div class="title">{{ title || $route.meta.title }}</div>
     <div class="content">
       <slot></slot>
@@ -14,6 +14,17 @@ export default {
       type: String,
       default: ''
     }
+  },
+  data() {
+    return {}
+  },
+  computed: {
+    showBack() {
+      return this.$route.meta.title !== 'Index'
+    }
+  },
+  mounted(){
+    console.log(this.showBack)
   },
   methods: {
     goBack() {

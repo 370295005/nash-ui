@@ -34,7 +34,6 @@ export default {
 <style lang="stylus">
 .wrapper {
   .item {
-    padding: 0 16px;
     .nash-btn {
       width: 100%;
       margin: 5px 0px;

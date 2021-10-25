@@ -122,6 +122,11 @@ module.exports = {
         collapseWhitespace: true,
         removeAttributeQuotes: false
       }
+      // meta: {
+      //   keywords: 'ui,components',
+      //   author: '370295005@qq.com',
+
+      // }
     })
   ],
   optimization: {
