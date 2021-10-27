@@ -1,8 +1,8 @@
 import Toast from './index.vue'
 export default {
   install: (Vue, options) => {
-    const toast = Vue.extend(Toast)
-    const profile = new toast({
+    const NashToast = Vue.extend(Toast)
+    const profile = new NashToast({
       el: document.createElement('div')
     })
     document.body.appendChild(profile.$el)

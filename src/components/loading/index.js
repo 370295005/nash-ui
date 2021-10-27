@@ -1,8 +1,8 @@
 import Loading from './index.vue'
 export default {
   install: (Vue, options) => {
-    const loading = Vue.extend(Loading)
-    const profile = new loading({
+    const NashLoading = Vue.extend(Loading)
+    const profile = new NashLoading({
       el: document.createElement('div')
     })
     document.body.appendChild(profile.$el)

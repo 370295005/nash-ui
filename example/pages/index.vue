@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     routerList() {
-      return routerList.filter((e) => {
+      return routerList.filter(e => {
         return e.name !== 'Index'
       })
     }

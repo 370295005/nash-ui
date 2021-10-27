@@ -7,7 +7,7 @@
       <div class="wheel-wrapper" ref="wheelWrapper">
         <div class="wheel">
           <div class="wheel-scroll">
-            <div v-for="item in number" class="wheel-item">{{ item }}</div>
+            <div class="wheel-item" v-for="item in number" :key="item">{{ item }}</div>
           </div>
         </div>
       </div>

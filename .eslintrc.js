@@ -1,20 +1,21 @@
-/*
- * @Author: yeenjian<1793147874@qq.com>
- * @Date: 2020-05-26 15:40:06
- * @LastEditors: yeenjian
- * @LastEditTime: 2020-08-17 14:20:48
- */
 module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
+    es6: true
+  },
+  globals: {
+    android: true,
+    WeixinJSBridge: true
   },
   parserOptions: {
-    parser: 'babel-eslint',
-    ecmaVersion: 6,
-    sourceType: 'module'
+    parser: '@babel/eslint-parser',
+    ecmaVersion: 7,
+    sourceType: 'module',
+    requireConfigFile: false
   },
+  extends: ['standard', 'plugin:vue/essential', '@vue/prettier', 'plugin:prettier/recommended'],
   rules: {
     // 修复es6字符串拼接babel报错
     indent: [
@@ -36,6 +37,19 @@ module.exports = {
     'vue/attributes-order': 'off',
     'vue/order-in-components': 'off',
     'vue/require-component-is': 'off',
-    'vue/no-unused-components': 'off'
+    'vue/no-unused-components': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        tabWidth: 2,
+        printWidth: 120,
+        useTabs: false,
+        semi: false,
+        singleQuote: true,
+        trailingComma: 'none',
+        endOfLine: 'auto',
+        htmlWhitespaceSensitivity: 'ignore'
+      }
+    ]
   }
 }

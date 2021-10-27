@@ -1,7 +1,7 @@
 <template>
   <div class="nash-loading" v-show="isVisible">
     <div class="loading" :class="type">
-      <div class="spinners" v-for="item in spinners" v-show="type === 'spinner'"></div>
+      <div class="spinners" v-for="item in spinners" :key="item" v-show="type === 'spinner'"></div>
       <svg width="30" height="30" viewBox="0 0 30 30" class="dynamic-container" v-show="type === 'dynamic'">
         <circle cx="15" cy="15" r="14" fill="none" class="dynamic"></circle>
       </svg>

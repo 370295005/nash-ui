@@ -23,7 +23,7 @@ export default {
       return this.$route.meta.title !== 'Index'
     }
   },
-  mounted(){
+  mounted() {
     console.log(this.showBack)
   },
   methods: {
