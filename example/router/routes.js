@@ -3,6 +3,7 @@ import Button from '../pages/button.vue'
 import Popup from '../pages/popup.vue'
 import Toast from '../pages/toast.vue'
 import Loading from '../pages/loading.vue'
+import Picker from '../pages/picker.vue'
 export default [
   {
     path: '/',
@@ -42,6 +43,14 @@ export default [
     component: Loading,
     meta: {
       title: 'Loading'
+    }
+  },
+  {
+    path: '/picker',
+    name: 'Picker',
+    component: Picker,
+    meta: {
+      title: 'Picker'
     }
   }
 ]

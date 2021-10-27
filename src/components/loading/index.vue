@@ -74,7 +74,7 @@ export default {
     border-top 3px solid $normal-gray
     animation rotate360 1s infinite linear
   .spinner
-    flex-box(space-evenly, end, row)
+    flex-box(space-evenly, flex-end, row)
     width 32px
     height 32px
     .spinners

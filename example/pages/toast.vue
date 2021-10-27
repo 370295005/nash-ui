@@ -4,12 +4,10 @@
   </div>
 </template>
 <script>
-import NashToast from '../../src/components/toast/index.vue'
 import NashButton from '../../src/components/button/index.vue'
 export default {
   components: {
-    NashButton,
-    NashToast
+    NashButton
   },
   data() {
     return {

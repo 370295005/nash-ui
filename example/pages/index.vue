@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="index-container">
     <div class="item" v-for="item in routerList" :key="item.name">
       <nash-button :warning="true" @click="toDetail(item)">{{ item.name }}</nash-button>
     </div>
@@ -32,7 +32,7 @@ export default {
 }
 </script>
 <style lang="stylus">
-.wrapper {
+.index-container {
   .item {
     .nash-btn {
       width: 100%;
