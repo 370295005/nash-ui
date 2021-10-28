@@ -144,14 +144,12 @@ module.exports = {
           name: 'vendors',
           chunks: 'all'
         }
-        // mintUI: {
-        //   name: 'mintUI',
-        //   匹配 /node_modules/mint-ui
-        //   test: /[\\/]node_modules[\\/]mint-ui[\\/]/
-        // }
       }
     }
+  },
+  stats: {
+    children: false,
+    modules: false,
+    assets: false
   }
 }
-
-console.log(module.exports.resolve.alias)

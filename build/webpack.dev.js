@@ -11,7 +11,7 @@ module.exports = merge(config, {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, '/dist'),
+      directory: path.join(__dirname, '../'),
       publicPath: '/',
       // 文件更改是否触发整个页面的更改
       watch: true,
