@@ -43,30 +43,31 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      this.value.length = this.pickerList.length
+      this.value.fill('')
       this.initWheel()
     })
   },
   methods: {
     initWheel() {
-      if (!this.scroll) {
-        const wrapper = this.$refs.wheelWrapper.children
-        const len = wrapper.length
-        for (let i = 0; i < len; i++) {
-          this.wheels[i] = new BScroll(wrapper[i], {
-            wheel: {
-              selectedIndex: 0,
-              wheelWrapperClass: 'wheel-scroll',
-              wheelItemClass: 'wheel-item',
-              wheelDisabledItemClass: 'wheel-disabled-item'
-            },
-            useTransition: false,
-            probeType: 3
-          })
-          this.wheels[i].on('wheelIndexChanged', (index) => {
-            this.value[i] = this.pickerList[i][index]
-            this.$emit('scroll', this.value)
-          })
-        }
+      const wrapper = this.$refs.wheelWrapper.children
+      const len = wrapper.length
+      for (let i = 0; i < len; i++) {
+        this.wheels[i] = new BScroll(wrapper[i], {
+          wheel: {
+            selectedIndex: 0,
+            wheelWrapperClass: 'wheel-scroll',
+            wheelItemClass: 'wheel-item',
+            wheelDisabledItemClass: 'wheel-disabled-item'
+          },
+          useTransition: false,
+          probeType: 2
+        })
+        this.wheels[i].on('wheelIndexChanged', (index) => {
+          this.value[i] = this.pickerList[i][index]
+          console.log(this.value);
+          this.$emit('scroll', this.value)
+        })
       }
     }
   }

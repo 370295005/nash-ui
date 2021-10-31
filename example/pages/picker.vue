@@ -2,7 +2,6 @@
   <div class="picker-container">
     <nash-button :info="true" @click="showPicker">Picker</nash-button>
     <nash-picker v-model="pickerValue" :picker-list="pickerList"></nash-picker>
-    {{ pickerValue }}
   </div>
 </template>
 <script>
@@ -15,11 +14,17 @@ export default {
   },
   data() {
     return {
-      pickerValue: '',
+      pickerValue: {},
       pickerList: [
         [1, 2, 3, 4, 5, 6, 7, 8],
-        [1, 5, 's', 'g', 'e', 'q', 'g', 'f']
+        [1, 5, 's', 'g', 'e', 'q', 'g', 'f'],
+        ['a', 2, 51, 12, 5125, 125]
       ]
+    }
+  },
+  watch: {
+    pickerValue(nv) {
+      console.log(nv)
     }
   },
   methods: {
