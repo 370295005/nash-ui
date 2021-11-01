@@ -26,11 +26,18 @@ module.exports = {
   scopes: [
     ['components', '组件相关'],
     ['hooks', 'hook 相关'],
+    ['utils', 'utils 相关'],
     ['docs', '文案文案相关'],
     ['styles', '样式相关'],
     ['deps', '项目依赖'],
-    ['other', '其他修改']
-  ],
+    ['other', '其他修改'],
+    // 如果选择 custom，后面会让你再输入一个自定义的 scope。也可以不设置此项，把后面的 allowCustomScopes 设置为 true
+  ].map(([value, description]) => {
+    return {
+      value,
+      name: `${value.padEnd(30)} (${description})`
+    }
+  }),
 
   messages: {
     type: '选择提交的类型:',
