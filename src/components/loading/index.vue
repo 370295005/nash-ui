@@ -1,5 +1,5 @@
 <template>
-  <div class="nash-loading" v-show="isVisible">
+  <div class="nash-loading" v-show="isVisible" :class="text === '' ? 'center' : ''">
     <div class="loading" :class="type">
       <div class="spinners" v-for="item in spinners" :key="item" v-show="type === 'spinner'"></div>
       <svg width="30" height="30" viewBox="0 0 30 30" class="dynamic-container" v-show="type === 'dynamic'">
@@ -10,17 +10,15 @@
   </div>
 </template>
 <script>
-const COMPONENTS_NAME = 'LOADING'
+import visibleMixins from '../../mixins/visible'
+const COMPONENTS_NAME = 'nash-loading'
 export default {
   name: COMPONENTS_NAME,
+  mixins: [visibleMixins],
   props: {
     type: {
       type: String,
       default: ''
-    },
-    visible: {
-      type: Boolean,
-      default: false
     },
     text: {
       type: String,
@@ -29,25 +27,7 @@ export default {
   },
   data() {
     return {
-      isVisible: false,
       spinners: 5
-    }
-  },
-  watch: {
-    visible(nv) {
-      if (nv) {
-        this.show()
-      } else {
-        this.hide()
-      }
-    }
-  },
-  methods: {
-    show() {
-      this.isVisible = true
-    },
-    hide() {
-      this.isVisible = false
     }
   }
 }
@@ -70,7 +50,7 @@ export default {
     height 30px
   .circle
     border-radius 50%
-    border 3px solid #f3f3f3
+    border 3px solid $loading-border
     border-top 3px solid $normal-gray
     animation rotate360 1s infinite linear
   .spinner
@@ -101,9 +81,11 @@ export default {
         100%
           stroke-dasharray 10, 80
           stroke-dashoffset -90px
-.loading-text
-  color $normal-white
-  font-size 14px
+  .loading-text
+    color $normal-white
+    font-size 14px
+.center
+  justify-content center
 @keyframes toggleHeight
   0%
     height 20px

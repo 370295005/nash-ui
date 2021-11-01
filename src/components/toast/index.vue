@@ -11,7 +11,7 @@
   </transition>
 </template>
 <script>
-const COMPONENTS_NAME = 'TOAST'
+const COMPONENTS_NAME = 'nash-toast'
 export default {
   name: COMPONENTS_NAME,
   props: {
@@ -30,7 +30,6 @@ export default {
   },
   watch: {
     isVisible(nv) {
-      console.log(nv)
       if (nv) {
         this.show()
       } else {
@@ -58,10 +57,6 @@ export default {
 </script>
 <style lang="stylus">
 @import '../../assets/css/default.styl'
-.nash-popup-fade-enter, .nash-popup-fade-leave-active
-  opacity 0
-.nash-popup-fade-enter-active, .nash-popup-fade-leave-active
-  transition all 0.3s ease-in-out
 .nash-toast
   position relative
   .nash-mask

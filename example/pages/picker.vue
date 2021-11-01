@@ -1,7 +1,7 @@
 <template>
   <div class="picker-container">
     <nash-button :info="true" @click="showPicker">Picker</nash-button>
-    <nash-picker v-model="pickerValue" :picker-list="pickerList"></nash-picker>
+    <nash-picker v-model="isVisible" :picker-list="pickerList" @valueChange="valueChange"></nash-picker>
   </div>
 </template>
 <script>
@@ -16,10 +16,70 @@ export default {
     return {
       pickerValue: {},
       pickerList: [
-        [1, 2, 3, 4, 5, 6, 7, 8],
-        [1, 5, 's', 'g', 'e', 'q', 'g', 'f'],
-        ['a', 2, 51, 12, 5125, 125]
-      ]
+        [
+          {
+            text: '剧毒',
+            value: '剧毒'
+          },
+          {
+            text: '蚂蚁',
+            value: '蚂蚁'
+          },
+          {
+            text: '幽鬼',
+            value: '幽鬼'
+          },
+          {
+            text: '主宰',
+            value: '主宰'
+          },
+          {
+            text: '卡尔',
+            value: '卡尔'
+          },
+          {
+            text: '宙斯',
+            value: '宙斯'
+          },
+          {
+            text: '巫医',
+            value: '巫医'
+          },
+          {
+            text: '巫妖',
+            value: '巫妖'
+          },
+          {
+            text: '神谕者',
+            value: '神谕者'
+          },
+          {
+            text: '撼地神牛',
+            value: '神谕者'
+          },
+          {
+            text: '蓝胖子',
+            value: '蓝胖子'
+          },
+          {
+            text: '水晶室女',
+            value: '水晶室女'
+          },
+          {
+            text: '莉娜',
+            value: '莉娜'
+          },
+          {
+            text: '斯拉克',
+            value: '斯拉克'
+          },
+          {
+            text: '斯拉达',
+            value: '斯拉达'
+          }
+        ]
+      ],
+      isVisible: false
     }
   },
   watch: {
@@ -29,7 +89,10 @@ export default {
   },
   methods: {
     showPicker() {
-      console.log('showpicker')
+      this.isVisible = true
+    },
+    valueChange(value) {
+      this.$toast.open({ text: value })
     }
   }
 }

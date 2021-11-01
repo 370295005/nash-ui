@@ -7,12 +7,15 @@ export default {
     })
     document.body.appendChild(profile.$el)
     if (options) {
-      if (options.text) profile.type = options.type
+      const { text, type } = options
+      profile.text = text
+      profile.type = type
     }
     const loadingMethod = {
-      open({ type }) {
+      open({ type, text }) {
         profile.visible = true
         profile.type = type || 'circle'
+        profile.text = text
       },
       close() {
         profile.visible = false

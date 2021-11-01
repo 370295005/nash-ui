@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-const COMPONENTS_NAME = 'BUTTON'
+const COMPONENTS_NAME = 'nash-button'
 export default {
   name: COMPONENTS_NAME,
   props: {

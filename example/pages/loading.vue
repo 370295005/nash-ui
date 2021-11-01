@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     showLoading(type) {
-      this.$loading.open({ type })
+      this.$loading.open({ type, text: '加载中' })
       setTimeout(() => {
         this.$loading.close()
       }, 5000)

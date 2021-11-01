@@ -14,7 +14,7 @@ module.exports = merge(config, {
       directory: path.join(__dirname, '../'),
       publicPath: '/',
       // 文件更改是否触发整个页面的更改
-      watch: true,
+      watch: true
       // 热更新开启
     },
     hot: true,

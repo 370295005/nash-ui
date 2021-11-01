@@ -1,13 +1,23 @@
-import button from './components/button'
-import loading from './components/loading'
-import picker from './components/picker'
-import popup from './components/popup'
-import toast from './components/toast'
-
-export default {
-  button,
-  loading,
-  picker,
-  popup,
-  toast
+import { Button, Loading, Picker, Popup, Toast } from './modules'
+const components = {
+  Button,
+  Loading,
+  Picker,
+  Popup,
+  Toast
 }
+const install = Vue => {
+  components.forEach(e => {
+    e.install(Vue)
+  })
+}
+// 全局引入
+const NashUI = {
+  version: require('../package.json').version,
+  install
+}
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(install)
+}
+export default NashUI
