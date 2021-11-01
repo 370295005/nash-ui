@@ -5,9 +5,9 @@
       <div class="wheel-indicator"></div>
       <div class="wheel-bottom"></div>
       <div class="wheel-wrapper" ref="wheelWrapper">
-        <div class="wheel" v-for="(item, index) in pickerList" :key="Math.random()">
+        <div class="wheel" v-for="(item, index) in pickerList" :key="Math.random() + index">
           <div class="wheel-scroll">
-            <div class="wheel-item" v-for="data in item" :key="Math.random()">{{ data }}</div>
+            <div class="wheel-item" v-for="(data, index) in item" :key="Math.random() + index">{{ data }}</div>
           </div>
         </div>
       </div>
@@ -30,7 +30,9 @@ export default {
     },
     pickerList: {
       type: Array,
-      default: []
+      default: () => {
+        return []
+      }
     }
   },
   data() {
@@ -63,9 +65,8 @@ export default {
           useTransition: false,
           probeType: 2
         })
-        this.wheels[i].on('wheelIndexChanged', (index) => {
+        this.wheels[i].on('wheelIndexChanged', index => {
           this.value[i] = this.pickerList[i][index]
-          console.log(this.value);
           this.$emit('scroll', this.value)
         })
       }

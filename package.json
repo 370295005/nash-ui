@@ -8,7 +8,8 @@
     "dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
     "serve": "webpack-dev-server --config build/webpack.dev.js",
-    "lint": "eslint --ext .html,.js,.vue src example --fix"
+    "lint": "eslint --ext .html,.js,.vue src example --fix",
+    "husky": "husky install"
   },
   "keywords": [
     "ui",
@@ -21,6 +22,8 @@
     "@babel/eslint-parser": "^7.15.8",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.15.6",
+    "@commitlint/cli": "^13.2.1",
+    "@commitlint/config-conventional": "^13.2.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-standard": "^6.1.0",
     "autoprefixer": "^9.8.6",
@@ -40,6 +43,8 @@
     "happypack": "^5.0.1",
     "html-webpack-plugin": "^5.3.2",
     "html-webpack-plugin-for-multihtml": "^2.30.2",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
     "loader-utils": "^2.0.0",
     "mini-css-extract-plugin": "^2.2.2",
     "postcss-loader": "^6.1.1",
