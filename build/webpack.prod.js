@@ -1,18 +1,16 @@
 /*  webpack.prod.js */
 const path = require('path')
 const webpack = require('webpack')
-const merge = require('webpack-merge')
-const webpackBaseConfig = require('./webpack.base.js')
+const { merge } = require('webpack-merge')
+const webpackBaseConfig = require('./webpack.config.js')
+const assetsPath = require('./utils').assetsPath
 module.exports = merge(webpackBaseConfig, {
   devtool: 'source-map',
   mode: 'production',
-  entry: {
-    main: path.resolve(__dirname, '../src/index.js') // 将src下的index.js 作为入口点
-  },
+  entry: path.resolve(__dirname, '../src/index.js'),
   output: {
     path: path.resolve(__dirname, '../lib'),
-    publicPath: '/lib/',
-    filename: 'nash-ui.min.js', // 改成自己的类库名
+    // filename: assetsPath('index.js'), // 改成自己的类库名
     library: 'nash-ui', // 类库导出
     libraryTarget: 'umd',
     umdNamedDefine: true

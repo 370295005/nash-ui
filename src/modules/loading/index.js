@@ -1,4 +1,4 @@
-import Loading from '../../components/loading.vue'
+import Loading from '../../components/loading/index.vue'
 
 Loading.install = (Vue, options) => {
   const NashLoading = Vue.extend(Loading)

@@ -94,7 +94,7 @@ module.exports = {
           }
         },
         include: path.resolve(__dirname),
-        exclude: /node_module | ^TcPlayer/
+        exclude: /node_module/
       },
       {
         test: /\.vue$/,
