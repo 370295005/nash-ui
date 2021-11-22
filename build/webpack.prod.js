@@ -15,15 +15,6 @@ module.exports = merge(webpackBaseConfig, {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  externals: {
-    // 外部化对vue的依赖
-    vue: {
-      root: 'Vue',
-      commonjs: 'vue',
-      commonjs2: 'vue',
-      amd: 'vue'
-    }
-  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
