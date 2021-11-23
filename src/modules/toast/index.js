@@ -15,6 +15,9 @@ Toast.install = (Vue, options) => {
     profile.visible = true
     profile.text = text
     profile.delay = delay
+    setTimeout(() => {
+      profile.visible = false
+    }, delay)
   }
   Vue.prototype.$toast = toastMethod
 }

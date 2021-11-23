@@ -33,9 +33,9 @@ export default {
   methods: {
     show() {
       this.isVisible = true
-      setTimeout(() => {
-        this.isVisible = false
-      }, this.delay)
+      // setTimeout(() => {
+      //   this.hide()
+      // }, this.delay)
     }
   }
 }
