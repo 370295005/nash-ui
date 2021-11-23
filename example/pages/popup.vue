@@ -13,13 +13,8 @@
   </div>
 </template>
 <script>
-import NashPopup from '../../src/components/popup/index.vue'
-import NashButton from '../../src/components/button/index.vue'
 export default {
-  components: {
-    NashButton,
-    NashPopup
-  },
+  components: {},
   data() {
     return {
       isVisible: false,

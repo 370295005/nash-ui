@@ -11,9 +11,11 @@
   </transition>
 </template>
 <script>
+import visibleMixins from '../../mixins/visible'
 const COMPONENTS_NAME = 'nash-toast'
 export default {
   name: COMPONENTS_NAME,
+  mixins: [visibleMixins],
   props: {
     mask: {
       type: Boolean,
@@ -28,29 +30,12 @@ export default {
       default: 1000
     }
   },
-  watch: {
-    isVisible(nv) {
-      if (nv) {
-        this.show()
-      } else {
-        this.hide()
-      }
-    }
-  },
-  data() {
-    return {
-      isVisible: false
-    }
-  },
   methods: {
     show() {
       this.isVisible = true
       setTimeout(() => {
         this.isVisible = false
       }, this.delay)
-    },
-    hide() {
-      this.isVisible = false
     }
   }
 }

@@ -92,7 +92,7 @@ export default {
       this.isVisible = true
     },
     valueChange(value) {
-      this.$toast.open({ text: value })
+      this.$toast({ text: value })
     }
   }
 }

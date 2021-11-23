@@ -6,14 +6,6 @@
     <nash-button :warning="true">主要按钮</nash-button>
   </div>
 </template>
-<script>
-import NashButton from '../../src/components/button/index.vue'
-export default {
-  components: {
-    NashButton
-  }
-}
-</script>
 <style lang="stylus">
 @import '@/assets/css/style.styl';
 .button-container {

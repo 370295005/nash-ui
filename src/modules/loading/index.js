@@ -1,6 +1,7 @@
 import Loading from '../../components/loading/index.vue'
 
 Loading.install = (Vue, options) => {
+  Vue.component(Loading.name, Loading)
   const NashLoading = Vue.extend(Loading)
   const profile = new NashLoading({
     el: document.createElement('div')

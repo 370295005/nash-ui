@@ -6,6 +6,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = merge(baseConfig, {
   mode: config.dev.env,
+  entry: {
+    app: '/example/index.js'
+  },
   output: {
     publicPath: config.dev.publicPath,
     filename: config.dev.filename,

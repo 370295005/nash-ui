@@ -6,13 +6,10 @@
   </div>
 </template>
 <script>
-import NashButton from '../../src/components/button/index.vue'
 export default {
-  components: {
-    NashButton
-  },
   methods: {
     showLoading(type) {
+      console.log(this.$loading)
       this.$loading.open({ type, text: '加载中' })
       setTimeout(() => {
         this.$loading.close()
@@ -22,10 +19,12 @@ export default {
 }
 </script>
 <style lang="stylus">
-@import '@/assets/css/style.styl'
-.loading-container
-  flex-box(flex-start, center, column)
-  .nash-btn
-    width 100%
-    margin 5px 0
+@import '@/assets/css/style.styl';
+.loading-container {
+  flex-box(flex-start, center, column);
+  .nash-btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
 </style>

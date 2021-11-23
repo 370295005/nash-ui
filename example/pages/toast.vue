@@ -4,11 +4,8 @@
   </div>
 </template>
 <script>
-import NashButton from '../../src/components/button/index.vue'
 export default {
-  components: {
-    NashButton
-  },
+  components: {},
   data() {
     return {
       isVisible: false
@@ -16,7 +13,7 @@ export default {
   },
   methods: {
     showToast1s() {
-      this.$toast.open({ text: '阿巴巴', delay: 3000 })
+      this.$toast({ text: '阿巴巴', delay: 1000 })
     }
   }
 }

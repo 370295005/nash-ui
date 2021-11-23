@@ -1,7 +1,7 @@
-import Button from './components/button/index.vue'
-import Loading from './components/loading/index.vue'
-import Picker from './components/picker/index.vue'
-import Popup from './components/popup/index.vue'
-import Toast from './components/toast/index.vue'
-
-export { Button, Loading, Picker, Popup, Toast }
+import Button from './modules/button'
+import Loading from './modules/loading'
+import Picker from './modules/picker'
+import Popup from './modules/popup'
+import Toast from './modules/toast'
+import Style from './modules/style'
+export { Button, Loading, Picker, Popup, Toast, Style }

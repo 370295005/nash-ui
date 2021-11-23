@@ -1,5 +1,7 @@
-import Picker from '../../components/picker//index.vue'
+import Picker from '../../components/picker/index.vue'
 
-Picker.insatll = Vue => {
+Picker.install = Vue => {
   Vue.component(Picker.name, Picker)
 }
+
+export default Picker

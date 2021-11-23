@@ -52,5 +52,9 @@ export default [
     meta: {
       title: 'Picker'
     }
+  },
+  {
+    path: '/test',
+    component: () => import('@/pages/test.vue')
   }
 ]

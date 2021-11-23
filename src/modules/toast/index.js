@@ -1,6 +1,7 @@
 import Toast from '../../components/toast/index.vue'
 
 Toast.install = (Vue, options) => {
+  Vue.component(Toast.name, Toast)
   const NashToast = Vue.extend(Toast)
   const profile = new NashToast({
     el: document.createElement('div')
@@ -11,6 +12,7 @@ Toast.install = (Vue, options) => {
     if (options.delay) profile.delay = options.delay
   }
   const toastMethod = ({ text, delay }) => {
+    profile.visible = true
     profile.text = text
     profile.delay = delay
   }
