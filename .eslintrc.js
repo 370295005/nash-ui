@@ -50,6 +50,7 @@ module.exports = {
         endOfLine: 'auto',
         htmlWhitespaceSensitivity: 'ignore'
       }
-    ]
+    ],
+    'no-template-curly-in-string': 'off'
   }
 }

@@ -135,7 +135,8 @@ export default {
 }
 </script>
 <style lang="stylus">
-@import '../../assets/css/default.styl'
+@import '../../assets/css/style.styl';
+@import '../../assets/css/animate.styl';
 .nash-picker
   width 100vw
   overflow hidden

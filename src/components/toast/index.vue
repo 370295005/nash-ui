@@ -56,35 +56,39 @@ export default {
 }
 </script>
 <style lang="stylus">
-@import '../../assets/css/default.styl'
-.nash-toast
-  position relative
-  .nash-mask
-    width 100%
-    height 100%
-    position fixed
-    top 0
-    left 0
-    right 0
-    bottom 0
-    opacity 0.4
-    z-index 900
-    background-color #25262d
-  .nash-toast-container
-    flex-box(center, center)
-    min-width 200px
-    max-width 300px
-    min-height 44px
-    max-height 88px
-    padding 10px 0
-    position fixed
-    top 50%
-    left 50%
-    transform translate(-50%, -50%)
-    text-align justify
-    color #ccc
-    z-index 999
-    font-size 14px
-    background-color #25262d
-    border-radius 3px
+@import '../../assets/css/style.styl';
+@import '../../assets/css/animate.styl';
+.nash-toast {
+  position: relative;
+  .nash-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.4;
+    z-index: 900;
+    background-color: #25262d;
+  }
+  .nash-toast-container {
+    flex-box(center, center);
+    min-width: 200px;
+    max-width: 300px;
+    min-height: 44px;
+    max-height: 88px;
+    padding: 10px 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: justify;
+    color: #ccc;
+    z-index: 999;
+    font-size: 14px;
+    background-color: #25262d;
+    border-radius: 3px;
+  }
+}
 </style>

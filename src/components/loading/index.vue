@@ -33,7 +33,8 @@ export default {
 }
 </script>
 <style lang="stylus">
-@import '../../assets/css/default.styl'
+@import '../../assets/css/style.styl';
+@import '../../assets/css/animate.styl';
 .nash-loading
   flex-box(space-evenly, center, column)
   min-width 150px
