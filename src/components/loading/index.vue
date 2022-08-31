@@ -37,8 +37,8 @@ export default {
 @import '../../assets/css/animate.styl';
 .nash-loading
   flex-box(space-evenly, center, column)
-  min-width 150px
-  min-height 150px
+  min-width 100px
+  min-height 100px
   position fixed
   top 50%
   left 50%

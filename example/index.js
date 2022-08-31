@@ -9,5 +9,5 @@ Vue.use(NashUI)
 const vm = new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  render: (h) => h(App)
 })

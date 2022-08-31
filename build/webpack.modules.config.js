@@ -10,7 +10,7 @@ const modules = {}
 const cPath = path.join(__dirname, '../src/modules')
 const files = fs.readdirSync(cPath)
 if (files) {
-  files.forEach(name => {
+  files.forEach((name) => {
     const p = path.join(cPath, name)
     if (fs.statSync(p).isDirectory()) {
       modules[name] = p

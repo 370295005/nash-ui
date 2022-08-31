@@ -96,7 +96,7 @@ export default {
             useTransition: false,
             probeType: 3
           })
-          this.wheels[i].on('wheelIndexChanged', index => {
+          this.wheels[i].on('wheelIndexChanged', (index) => {
             this.pickedValue = this.pickerList[i][index].value || this.pickerList[0][0].value
           })
         }
@@ -104,7 +104,7 @@ export default {
     },
     destoryWheel() {
       this.wheels &&
-        this.wheels.forEach(wheel => {
+        this.wheels.forEach((wheel) => {
           wheel.destroy()
           console.log(wheel)
         })
@@ -112,7 +112,7 @@ export default {
     },
     refresh() {
       this.$nextTick(() => {
-        this.wheels.forEach(wheel => {
+        this.wheels.forEach((wheel) => {
           wheel.refresh()
         })
       })
@@ -135,8 +135,8 @@ export default {
 }
 </script>
 <style lang="stylus">
-@import '../../assets/css/style.styl';
-@import '../../assets/css/animate.styl';
+@import '../../assets/css/style.styl'
+@import '../../assets/css/animate.styl'
 .nash-picker
   width 100vw
   overflow hidden

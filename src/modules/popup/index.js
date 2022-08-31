@@ -1,6 +1,6 @@
 import Popup from '../../components/popup/index.vue'
 
-Popup.install = Vue => {
+Popup.install = (Vue) => {
   Vue.component(Popup.name, Popup)
 }
 

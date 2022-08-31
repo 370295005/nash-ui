@@ -73,11 +73,15 @@ btn-active($bg) {
   font-size: 14px;
   color: $normal-black;
   border-radius: 3px;
+  border: 1px solid $button-default-border;
   background-color: $normal-white;
   opacity: 1;
   transition: opacity 0.2s;
   cursor: pointer;
   btn-active(#ccc);
+  &:hover {
+
+  }
 }
 .nash-btn-primary {
   background-color: $button-primary;

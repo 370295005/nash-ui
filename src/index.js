@@ -1,7 +1,7 @@
 import { Button, Loading, Picker, Popup, Toast } from './modules'
 const components = [Button, Loading, Picker, Popup, Toast]
 function install(Vue) {
-  components.forEach(e => {
+  components.forEach((e) => {
     e.install(Vue)
   })
 }
@@ -10,7 +10,7 @@ const NashUI = {
   version: require('../package.json').version,
   install
 }
-components.forEach(e => {
+components.forEach((e) => {
   let name = e.name.replace(/nash-/g, '')
   name = name.slice(0, 1).toUpperCase() + name.slice(1, name.length)
   NashUI[name] = e

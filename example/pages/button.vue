@@ -1,9 +1,9 @@
 <template>
   <div class="button-container">
     <nash-button :primary="true">主要按钮</nash-button>
-    <nash-button :info="true">主要按钮</nash-button>
-    <nash-button :disable="true">主要按钮</nash-button>
-    <nash-button :warning="true">主要按钮</nash-button>
+    <nash-button :info="true">信息按钮</nash-button>
+    <nash-button :disable="true">禁用按钮</nash-button>
+    <nash-button :warning="true">警告按钮</nash-button>
   </div>
 </template>
 <style lang="stylus">

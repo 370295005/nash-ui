@@ -18,7 +18,7 @@ shell.mkdir('-p', assetPath)
 function buildPack(prodConfig, cb, text) {
   const spinner = ora(text || 'building...')
   spinner.start()
-  webpack(prodConfig, err => {
+  webpack(prodConfig, (err) => {
     spinner.stop()
     if (err) {
       throw err
