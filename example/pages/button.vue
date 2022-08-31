@@ -6,11 +6,7 @@
   </div>
 </template>
 <script>
-import NashButton from '@/components/button'
 export default {
-  components: {
-    NashButton
-  },
   data() {
     return {
       buttonList: [

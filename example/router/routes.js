@@ -15,5 +15,21 @@ export default [
     meta: {
       title: 'Button'
     }
+  },
+  {
+    path: '/toast',
+    name: 'Toast',
+    component: () => import('../pages/toast.vue'),
+    meta: {
+      title: 'Toast'
+    }
+  },
+  {
+    path: '/loading',
+    name: 'Loading',
+    component: () => import('../pages/loading.vue'),
+    meta: {
+      title: 'Loading'
+    }
   }
 ]
