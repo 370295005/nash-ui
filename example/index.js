@@ -1,11 +1,7 @@
 import Vue from 'vue'
 import App from './app.vue'
 import router from './router'
-import '@/assets/css/reset.styl'
-import NashUI from '../lib'
-import '../lib/style.css'
-console.log(NashUI)
-Vue.use(NashUI)
+import './assets/css/reset.css'
 const vm = new Vue({
   el: '#app',
   router,

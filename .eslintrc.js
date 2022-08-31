@@ -5,16 +5,6 @@ module.exports = {
     node: true,
     es6: true
   },
-  globals: {
-    android: true,
-    WeixinJSBridge: true
-  },
-  parserOptions: {
-    parser: '@babel/eslint-parser',
-    ecmaVersion: 7,
-    sourceType: 'module',
-    requireConfigFile: false
-  },
   extends: ['standard', 'plugin:vue/essential', '@vue/prettier', 'plugin:prettier/recommended'],
   rules: {
     // 修复es6字符串拼接babel报错

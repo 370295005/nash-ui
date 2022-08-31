@@ -1,11 +1,12 @@
-const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const path = require('path')
 module.exports = {
   resolve: {
-    extensions: ['.js', '.vue', '.json']
+    extensions: ['.js', '.vue', '.json', 'jsx'],
+    alias: {
+      '@': path.resolve('__dirname', '../src')
+    }
   },
   module: {
     rules: [
@@ -19,14 +20,14 @@ module.exports = {
         ]
       },
       {
-        test: /\.styl(us)?$/,
+        test: /\.less$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader
           },
           'css-loader',
           'postcss-loader',
-          'stylus-loader'
+          'less-loader'
         ]
       },
       {

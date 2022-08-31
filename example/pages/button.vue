@@ -1,18 +1,48 @@
 <template>
-  <div class="button-container">
-    <nash-button :primary="true">主要按钮</nash-button>
-    <nash-button :info="true">信息按钮</nash-button>
-    <nash-button :disable="true">禁用按钮</nash-button>
-    <nash-button :warning="true">警告按钮</nash-button>
+  <div class="button-page">
+    <div class="item" v-for="item in buttonList" :key="item.text">
+      <nash-button :type="item.type">{{ item.text }}</nash-button>
+    </div>
   </div>
 </template>
-<style lang="stylus">
-@import '@/assets/css/style.styl';
-.button-container {
-  flex-box(flex-start, center, column);
-  width: 100%;
-  .nash-btn {
-    margin: 5px 0;
+<script>
+import NashButton from '@/components/button'
+export default {
+  components: {
+    NashButton
+  },
+  data() {
+    return {
+      buttonList: [
+        {
+          type: '',
+          text: '默认按钮'
+        },
+        {
+          type: 'primary',
+          text: '主要按钮'
+        },
+        {
+          type: 'success',
+          text: '成功按钮'
+        },
+        {
+          type: 'warning',
+          text: '警告按钮'
+        },
+        {
+          type: 'error',
+          text: '错误按钮'
+        }
+      ]
+    }
   }
+}
+</script>
+<style lang="less" scoped>
+@import '@/assets/css/style.less';
+.item {
+  .flex-box(center,center);
+  margin: 6px 0;
 }
 </style>

@@ -1,17 +1,15 @@
 <template>
-  <div class="index-container">
+  <div class="index-page">
     <div class="item" v-for="item in routerList" :key="item.name">
-      <nash-button :warning="true" @click="toDetail(item)">{{ item.name }}</nash-button>
+      <nash-button type="primary" @click="toPage(item)">{{ item.name }}</nash-button>
     </div>
   </div>
 </template>
 <script>
-import NashButton from '../../src/components/button/index.vue'
 import routerList from '../router/routes'
-import NashPage from '../components/NashPage.vue'
+import NashButton from '@/components/button/index'
 export default {
   components: {
-    NashPage,
     NashButton
   },
   computed: {
@@ -22,7 +20,7 @@ export default {
     }
   },
   methods: {
-    toDetail(item) {
+    toPage(item) {
       const { path } = item
       this.$router.push({
         path
@@ -31,9 +29,11 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
-.index-container {
+<style lang="less" scoped>
+@import '@/assets/css/style.less';
+.index-page {
   .item {
+    .flex-box(center,center);
     .nash-btn {
       width: 100%;
       margin: 5px 0px;
