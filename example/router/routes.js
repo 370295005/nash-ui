@@ -31,5 +31,13 @@ export default [
     meta: {
       title: 'Loading'
     }
+  },
+  {
+    path: '/popup',
+    name: 'Popup',
+    component: () => import('../pages/popup.vue'),
+    meta: {
+      title: 'Popup'
+    }
   }
 ]

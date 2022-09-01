@@ -71,6 +71,7 @@ export default {
   border-radius: 4px;
   background-color: @default;
   transition: 0.2s;
+  box-sizing: border-box;
   cursor: pointer;
 }
 .nash-btn-primary {

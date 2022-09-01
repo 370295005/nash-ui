@@ -23,9 +23,11 @@ export default {
   methods: {
     show() {
       this.isVisible = true
+      this.$emit(EVENT_NAME, true)
     },
     hide() {
       this.isVisible = false
+      this.$emit(EVENT_NAME, false)
     }
   }
 }

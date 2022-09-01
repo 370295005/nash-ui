@@ -25,7 +25,7 @@ export default {
 .loading-page {
   .flex-box(center,center,column);
   .nash-btn {
-    width: 50px;
+    width: 343px;
     margin: 5px 0;
   }
 }
