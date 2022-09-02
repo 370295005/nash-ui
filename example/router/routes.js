@@ -39,5 +39,13 @@ export default [
     meta: {
       title: 'Popup'
     }
+  },
+  {
+    path: '/picker',
+    name: 'Picker',
+    component: () => import('../pages/picker.vue'),
+    meta: {
+      title: 'Picker'
+    }
   }
 ]

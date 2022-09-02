@@ -33,9 +33,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@import '@/assets/css/style.less';
-@import '@/assets/css/color.less';
-@import '@/assets/css/animate.less';
+@import '@/assets/css/default.less';
 .nash-toast {
   position: relative;
   .nash-mask {
@@ -47,7 +45,7 @@ export default {
     right: 0;
     bottom: 0;
     opacity: 0.4;
-    z-index: 100;
+    z-index: @mask-zIndex;
     background-color: @mask-background-color;
   }
   .nash-toast-container {
@@ -63,7 +61,7 @@ export default {
     transform: translate(-50%, -50%);
     text-align: justify;
     color: #ccc;
-    z-index: 200;
+    z-index: @mask-content-zIndex;
     font-size: 14px;
     background-color: @mask-background-color;
     border-radius: 3px;

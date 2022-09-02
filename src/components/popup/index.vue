@@ -38,22 +38,20 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@import '@/assets/css/animate.less';
-@import '@/assets/css/style.less';
-@import '@/assets/css/color.less';
+@import '@/assets/css/default.less';
 .nash-popup {
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 200;
   .nash-popup-mask {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     opacity: 0.4;
+    z-index: @mask-zIndex;
     transition: opacity 0.3s ease-in-out;
     background-color: @mask-background-color;
   }
@@ -63,6 +61,7 @@ export default {
     position: absolute;
     max-height: 100%;
     background-color: @default;
+    z-index: @mask-content-zIndex;
   }
   .container-position-top {
     top: 0;

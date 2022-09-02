@@ -1,7 +1,7 @@
 <template>
   <div class="popup-page">
     <nash-button v-for="item in direction" :key="item" @click="showPopup(item)" type="primary">{{ item }}</nash-button>
-    <nash-popup :direction="popupDirction" v-model="isVisible">
+    <nash-popup :direction="popupDirection" v-model="isVisible">
       <template #content>
         <div class="popup-content">
           <div class="my-title">{{ title }}</div>
@@ -21,14 +21,14 @@ export default {
       title: '标题',
       content: '我是内容',
       direction: ['top', 'bottom', 'left', 'right'],
-      popupDirction: 'top',
+      popupDirection: 'top',
       isVisible: false,
       avatar
     }
   },
   methods: {
     showPopup(direction) {
-      this.popupDirction = direction
+      this.popupDirection = direction
       this.isVisible = true
     }
   }
