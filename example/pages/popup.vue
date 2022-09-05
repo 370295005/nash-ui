@@ -2,7 +2,7 @@
   <div class="popup-page">
     <nash-button v-for="item in direction" :key="item" @click="showPopup(item)" type="primary">{{ item }}</nash-button>
     <nash-popup :direction="popupDirection" v-model="isVisible">
-      <template #content>
+      <template>
         <div class="popup-content">
           <div class="my-title">{{ title }}</div>
           <div class="my-content">

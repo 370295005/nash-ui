@@ -3,4 +3,5 @@ import Toast from './toast'
 import Loading from './loading'
 import Popup from './popup'
 import Picker from './picker'
-export { Button, Toast, Loading, Popup, Picker }
+import Mask from './mask'
+export { Button, Toast, Loading, Popup, Picker, Mask }

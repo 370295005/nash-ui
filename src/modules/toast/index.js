@@ -14,9 +14,9 @@ NashToast.install = (Vue, options) => {
   }
   const method = ({ text, delay, mask }) => {
     profile.visible = true
-    profile.text = text
-    profile.delay = delay
-    profile.mask = mask
+    profile.text = text || ''
+    profile.delay = delay || 1000
+    profile.mask = mask || false
     setTimeout(() => {
       profile.visible = false
     }, delay)

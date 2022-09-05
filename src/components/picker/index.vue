@@ -1,26 +1,24 @@
 <template>
-  <nash-popup v-model="isVisible" direction="bottom">
-    <template #content>
-      <div class="nash-picker">
-        <div class="nash-picker-toolbar">
-          <div class="picker-cancel" @click="cancel">{{ cancelText }}</div>
-          <div class="picker-subtitle">{{ subTitle }}</div>
-          <div class="picker-confirm" @click="confirm">{{ confirmText }}</div>
-        </div>
-        <div class="nash-picker-container">
-          <div class="wheel-top"></div>
-          <div class="wheel-indicator"></div>
-          <div class="wheel-bottom"></div>
-          <div class="wheel-wrapper" ref="wheelWrapper">
-            <div class="wheel" v-for="(item, index) in pickerList" :key="Math.random() + index">
-              <div class="wheel-scroll">
-                <div class="wheel-item" v-for="(data, index) in item" :key="Math.random() + index">{{ data.text }}</div>
-              </div>
+  <nash-popup :direction="direction" v-model="isVisible">
+    <div class="nash-picker">
+      <div class="nash-picker-toolbar">
+        <div class="picker-cancel" @click="cancel">{{ cancelText }}</div>
+        <div class="picker-subtitle">{{ subTitle }}</div>
+        <div class="picker-confirm" @click="confirm">{{ confirmText }}</div>
+      </div>
+      <div class="nash-picker-container">
+        <div class="wheel-top"></div>
+        <div class="wheel-indicator"></div>
+        <div class="wheel-bottom"></div>
+        <div class="wheel-wrapper" ref="wheelWrapper">
+          <div class="wheel" v-for="(item, index) in pickerList" :key="Math.random() + index">
+            <div class="wheel-scroll">
+              <div class="wheel-item" v-for="(data, index) in item" :key="Math.random() + index">{{ data.text }}</div>
             </div>
           </div>
         </div>
       </div>
-    </template>
+    </div>
   </nash-popup>
 </template>
 <script>
@@ -54,40 +52,45 @@ export default {
     subTitle: {
       type: String,
       default: ''
+    },
+    direction: {
+      type: String,
+      default: 'bottom'
     }
   },
   watch: {
     isVisible(nv) {
-      console.log(nv)
       if (nv) {
         setTimeout(() => {
           this.initWheel()
         }, 200)
+      } else {
+        this.hide()
       }
     }
   },
   data() {
     return {
-      number: 100,
       scroll: null,
       wheels: [],
       value: [],
-      selectedIndex: [],
+      selectedIndex: 0,
       pickedValue: null
     }
   },
-  mounted() {
-    this.initWheel()
+  beforeDestroy() {
+    this.destoryWheel()
   },
   methods: {
     initWheel() {
       this.$nextTick(() => {
         const wrapper = this.$refs.wheelWrapper.children
         const len = wrapper.length
+        this.pickedValue = this.pickerList[0][0].value
         for (let i = 0; i < len; i++) {
           this.wheels[i] = new BScroll(wrapper[i], {
             wheel: {
-              selectedIndex: 0,
+              selectedIndex: this.selectedIndex || 0,
               wheelWrapperClass: 'wheel-scroll',
               wheelItemClass: 'wheel-item',
               wheelDisabledItemClass: 'wheel-disabled-item'
@@ -97,6 +100,8 @@ export default {
           })
           this.wheels[i].on('wheelIndexChanged', (index) => {
             this.pickedValue = this.pickerList[i][index].value || this.pickerList[0][0].value
+            this.selectedIndex = index
+            this.$emit('valueChange', this.pickedValue)
           })
         }
       })
@@ -105,7 +110,6 @@ export default {
       this.wheels &&
         this.wheels.forEach((wheel) => {
           wheel.destroy()
-          console.log(wheel)
         })
       this.wheels = []
     },
@@ -121,9 +125,8 @@ export default {
       this.hide()
     },
     confirm() {
-      this.$emit('confirm')
+      this.$emit('confirm', this.pickedValue)
       this.hide()
-      this.$toast.open({ text: this.pickedValue })
     }
   }
 }
@@ -151,11 +154,15 @@ export default {
       bottom: 0;
       background-color: @default-border;
     }
-    .cancel {
+    .picker-cancel {
       color: @info;
     }
-    .confirm {
+    .picker-confirm {
       color: @primary;
+    }
+    .picker-subtitle {
+      color: @black;
+      font-size: 16px;
     }
   }
   .nash-picker-container {

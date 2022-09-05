@@ -5,7 +5,6 @@ import NashUI from '@/index.js'
 import './assets/css/reset.css'
 
 Vue.use(NashUI)
-console.log(NashUI)
 const vm = new Vue({
   el: '#app',
   router,

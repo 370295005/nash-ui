@@ -1,11 +1,11 @@
 <template>
   <div class="picker-page">
     <nash-button type="primary" @click="showPicker">Picker</nash-button>
-    <nash-picker v-model="isVisible" :picker-list="pickerList" @valueChange="valueChange"></nash-picker>
+    <nash-picker v-model="isVisible" :picker-list="pickerList" @confirm="confirm" subTitle="标题"></nash-picker>
   </div>
 </template>
 <script>
-// TODO 点击蒙层关闭后无法再次弹出的问题
+// TODO 关闭picker时会自动选中项会瞬间变为第一项
 export default {
   data() {
     return {
@@ -77,18 +77,12 @@ export default {
       isVisible: false
     }
   },
-  watch: {
-    pickerValue(nv) {
-      console.log(nv)
-    }
-  },
   methods: {
     showPicker() {
       this.isVisible = true
-      console.log(this.isVisible)
     },
-    valueChange(value) {
-      this.$toast({ text: value })
+    confirm(value) {
+      this.$toast({ text: value, delay: 1000 })
     }
   }
 }

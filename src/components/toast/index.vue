@@ -1,7 +1,8 @@
 <template>
   <transition name="fade">
     <div class="nash-toast" v-show="isVisible">
-      <div class="nash-mask" v-show="mask"></div>
+      <!-- <div class="nash-mask" v-show="mask"></div> -->
+      <nash-mask v-show="mask"></nash-mask>
       <div class="nash-toast-container">
         <div class="nash-toast-text">
           {{ text }}
@@ -11,11 +12,15 @@
   </transition>
 </template>
 <script>
+import NashMask from '@/components/mask'
 import visibleMixins from '@/mixins/visible'
 const COMPONENT_NAME = 'nash-toast'
 export default {
   name: COMPONENT_NAME,
   mixins: [visibleMixins],
+  components: {
+    NashMask
+  },
   props: {
     mask: {
       type: Boolean,

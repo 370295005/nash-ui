@@ -1,11 +1,11 @@
 <template>
   <transition name="fade">
     <div class="nash-popup" v-show="isVisible">
-      <div class="nash-popup-mask" @click="maskClick"></div>
+      <nash-mask @click="maskClick"></nash-mask>
       <transition :name="'popup-' + direction">
         <div class="nash-popup-container" :class="'container-position-' + direction" v-show="isVisible">
           <div class="nash-popup-content">
-            <slot name="content"></slot>
+            <slot></slot>
           </div>
         </div>
       </transition>
@@ -13,6 +13,7 @@
   </transition>
 </template>
 <script>
+import NashMask from '@/components/mask'
 import visibleMixins from '@/mixins/visible'
 const COMPONENT_NAME = 'nash-popup'
 export default {
@@ -30,9 +31,7 @@ export default {
   },
   methods: {
     maskClick() {
-      if (this.maskCloseable) {
-        this.hide()
-      }
+      this.maskCloseable && this.hide()
     }
   }
 }
