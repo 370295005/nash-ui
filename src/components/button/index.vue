@@ -43,6 +43,7 @@ export default {
 .btn-active(@color) {
   &:active {
     color: @color;
+    background-color: @color;
     border-color: @color;
   }
 }
@@ -89,10 +90,10 @@ export default {
   color: @default;
 }
 .nash-btn-info {
-  .btn-active(@success-active);
-  .btn-hover(@success-hover,@default,@success-hover);
-  .border-color(@success-border);
-  background-color: @primary;
+  .btn-active(@info-active);
+  .btn-hover(@info-hover,@default,@info-hover);
+  .border-color(@info-border);
+  background-color: @info;
   color: @default;
 }
 .nash-btn-warning {

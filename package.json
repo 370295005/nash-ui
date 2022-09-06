@@ -44,7 +44,7 @@
     "lint-staged": "^11.2.6",
     "loader-utils": "^2.0.0",
     "mini-css-extract-plugin": "^2.2.2",
-    "postcss-loader": "^6.1.1",
+    "postcss-loader": "^7.0.1",
     "postcss-plugin-px2rem": "^0.8.1",
     "shelljs": "^0.8.4",
     "terser-webpack-plugin": "^5.2.4",

@@ -29,6 +29,10 @@ export default {
         {
           type: 'error',
           text: '错误按钮'
+        },
+        {
+          type: 'info',
+          text: '信息按钮'
         }
       ]
     }
