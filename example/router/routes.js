@@ -47,5 +47,13 @@ export default [
     meta: {
       title: 'Picker'
     }
+  },
+  {
+    path: '/dialog',
+    name: 'Dialog',
+    component: () => import('../pages/dialog.vue'),
+    meta: {
+      title: 'Dialog'
+    }
   }
 ]

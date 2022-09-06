@@ -12,14 +12,24 @@ NashToast.install = (Vue, options) => {
     profile.delay = options?.delay || 1000
     profile.mask = options?.mask || false
   }
-  const method = ({ text, delay, mask }) => {
+  const method = (option) => {
     profile.visible = true
-    profile.text = text || ''
-    profile.delay = delay || 1000
-    profile.mask = mask || false
-    setTimeout(() => {
-      profile.visible = false
-    }, delay)
+    if (typeof option === 'string') {
+      profile.text = option
+      profile.delay = 3000
+      profile.mask = false
+      setTimeout(() => {
+        profile.visible = false
+      }, 1000)
+    } else {
+      const { text, delay, mask } = option
+      profile.text = text || ''
+      profile.delay = delay || 1000
+      profile.mask = mask || false
+      setTimeout(() => {
+        profile.visible = false
+      }, delay || 1000)
+    }
   }
   Vue.prototype.$toast = method
 }

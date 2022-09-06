@@ -6,6 +6,28 @@
     transform: rotate(360deg); /* 动画结束的时候旋转了360度 */
   }
 }
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -64,4 +86,16 @@
 .popup-bottom-enter-active,
 .popup-bottom-leave-active {
   transition: all 0.3s ease-in-out;
+}
+
+.dialog-enter-active {
+  animation: opacity 0.4s;
+}
+.dialog-enter-from,
+.dialog-leave-to {
+  opacity: 0;
+}
+.dialog-enter-active,
+.dialog-leave-active {
+  transition: opacity 0.3s ease;
 }

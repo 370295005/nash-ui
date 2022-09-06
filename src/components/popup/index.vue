@@ -19,6 +19,9 @@ const COMPONENT_NAME = 'nash-popup'
 export default {
   name: COMPONENT_NAME,
   mixins: [visibleMixins],
+  components: {
+    NashMask
+  },
   props: {
     direction: {
       type: String,

@@ -2,7 +2,7 @@
   <transition name="fade">
     <div class="nash-toast" v-show="isVisible">
       <!-- <div class="nash-mask" v-show="mask"></div> -->
-      <nash-mask v-show="mask"></nash-mask>
+      <nash-mask v-if="mask"></nash-mask>
       <div class="nash-toast-container">
         <div class="nash-toast-text">
           {{ text }}

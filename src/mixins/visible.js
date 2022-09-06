@@ -17,6 +17,7 @@ export default {
   },
   watch: {
     visible(nv) {
+      console.log(nv)
       nv ? this.show() : this.hide()
     }
   },

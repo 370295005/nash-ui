@@ -1,5 +1,7 @@
 <template>
-  <div class="nash-mask" @click="maskClick"></div>
+  <transition name="fade">
+    <div class="nash-mask" @click="maskClick"></div>
+  </transition>
 </template>
 <script>
 const COMPONENT_NAME = 'nash-mask'
@@ -23,10 +25,11 @@ export default {
 @import '@/assets/css/zIndex.less';
 @import '@/assets/css/animate.less';
 .nash-mask {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   top: 0;
+  left: 0;
   opacity: 0.4;
   z-index: @mask-zIndex;
   transition: opacity 0.3s ease-in-out;
