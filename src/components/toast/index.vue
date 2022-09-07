@@ -24,7 +24,7 @@ export default {
   props: {
     mask: {
       type: Boolean,
-      default: true
+      default: false
     },
     text: {
       type: String,

@@ -16,7 +16,7 @@ NashToast.install = (Vue, options) => {
     profile.visible = true
     if (typeof option === 'string') {
       profile.text = option
-      profile.delay = 3000
+      profile.delay = 1000
       profile.mask = false
       setTimeout(() => {
         profile.visible = false

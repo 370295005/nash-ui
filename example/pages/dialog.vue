@@ -25,7 +25,6 @@ export default {
       })
     },
     showDialog1() {
-      // TODO 初次显示toast的时候依然会显示mask
       this.$dialog.open({
         type: 'btn',
         title: '我是标题',
