@@ -1,7 +1,7 @@
 <template>
   <div class="nash-ui-page">
     <div class="back" @click="goBack" v-show="showBack"><img src="../assets/images/icon_navbar_back@2x.png" /></div>
-    <div class="title">{{ title || $route.meta.title }}</div>
+    <div class="title">{{ 'NashUI' || $route.meta.title }}</div>
     <div class="content">
       <slot></slot>
     </div>
@@ -9,21 +9,11 @@
 </template>
 <script>
 export default {
-  props: {
-    title: {
-      type: String,
-      default: ''
-    }
-  },
-  data() {
-    return {}
-  },
   computed: {
     showBack() {
       return this.$route.meta.title !== 'Index'
     }
   },
-  mounted() {},
   methods: {
     goBack() {
       this.$router.go(-1)

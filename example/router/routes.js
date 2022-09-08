@@ -55,5 +55,13 @@ export default [
     meta: {
       title: 'Dialog'
     }
+  },
+  {
+    path: '/input',
+    name: 'Input',
+    component: () => import('../pages/input.vue'),
+    meta: {
+      title: 'Input'
+    }
   }
 ]
