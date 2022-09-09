@@ -6,4 +6,5 @@ import Picker from './picker'
 import Mask from './mask'
 import Dialog from './dialog'
 import Input from './input'
-export { Button, Toast, Loading, Popup, Picker, Mask, Dialog, Input }
+import Checkbox from './checkbox'
+export { Button, Toast, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox }

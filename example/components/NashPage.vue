@@ -21,7 +21,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .nash-ui-page {
   width: 100%;
   height: 100%;

@@ -30,7 +30,7 @@ module.exports = merge(baseConfig, {
         warnings: false
       }
     },
-    open: false
+    open: true
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -16,7 +16,7 @@
       @blur="handleBlur"
       @change="HandleChange"
     />
-    <div class="nash-input-clear-icon" v-show="_showClear" @click="clearInput">
+    <div class="nash-input-clear-icon" v-show="true" @click="clearInput">
       <i class="nashic-wrong"></i>
     </div>
     <div class="nash-input-password-icon" v-show="showEye" @click="toggleEye">
@@ -99,6 +99,7 @@ export default {
     },
     // TODO 点击事件无效，且会失去焦点，导致图标不显示，如果图标一直显示则功能正常
     clearInput(e) {
+      console.log('clear')
       this.inputValue = ''
       this.$refs.input.focus()
     },

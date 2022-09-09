@@ -63,5 +63,13 @@ export default [
     meta: {
       title: 'Input'
     }
+  },
+  {
+    path: '/checkbox',
+    name: 'Checkbox',
+    component: () => import('../pages/checkbox.vue'),
+    meta: {
+      title: 'Checkbox'
+    }
   }
 ]
