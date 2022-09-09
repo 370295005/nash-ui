@@ -15,6 +15,7 @@
 </template>
 
 <script>
+// TODO 增加按钮组 checkbox-group
 const COMPONENT_NAME = 'nash-checkbox'
 const EVENT_INPUT = 'input'
 export default {

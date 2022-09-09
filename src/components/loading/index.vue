@@ -1,8 +1,13 @@
 <template>
   <div class="nash-loading" v-show="isVisible" :class="text === '' ? 'center' : ''">
     <div class="loading" :class="type">
-      <div class="spinners" v-for="item in 5" :key="item" v-show="type === 'spinner'"></div>
-      <svg width="30" height="30" viewBox="0 0 30 30" class="dynamic-container" v-show="type === 'dynamic'">
+      <div class="spinners-container" v-if="type === 'spinner'">
+        <div class="spinners" v-for="item in 5" :key="item"></div>
+      </div>
+      <div class="spinners-circle-container" v-if="type === 'spinner-circle'">
+        <div class="spinners-circle" v-for="item in 12" :key="item"></div>
+      </div>
+      <svg width="30" height="30" viewBox="0 0 30 30" class="dynamic-container" v-if="type === 'dynamic'">
         <circle cx="15" cy="15" r="14" fill="none" class="dynamic"></circle>
       </svg>
     </div>
@@ -40,6 +45,26 @@ export default {
   .spinners-cal(@index + 1);
 }
 
+.spinners-circle-cal(@index) when(@index<=12) {
+  &:nth-child(@{index}) {
+    animation-delay: ((@index - 1) / 12s);
+    transform: rotate(30deg * (@index - 6)) translateY(-150%);
+  }
+  .spinners-circle-cal(@index + 1);
+}
+
+@keyframes spinner-circle-fade {
+  0% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
+
 .nash-loading {
   .flex-box(space-evenly,center,column);
   min-width: 100px;
@@ -74,6 +99,24 @@ export default {
       background-color: @default;
       animation: toggleHeight 0.7s infinite ease-in-out;
       .spinners-cal(1);
+    }
+  }
+  .spinner-circle {
+    position: relative;
+    display: block;
+    width: 32px;
+    height: 32px;
+    .spinners-circle {
+      position: absolute;
+      left: 44.5%;
+      top: 37%;
+      width: 2px; // for rem
+      height: 25%;
+      border-radius: 50% / 20%;
+      opacity: 0.25;
+      background-color: @default;
+      animation: spinner-circle-fade 1s linear infinite;
+      .spinners-circle-cal(1);
     }
   }
   .dynamic-container {

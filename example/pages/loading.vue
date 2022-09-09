@@ -3,6 +3,7 @@
     <nash-button type="primary" @click="showLoading('circle')">circle</nash-button>
     <nash-button type="primary" @click="showLoading('spinner')">spinner</nash-button>
     <nash-button type="primary" @click="showLoading('dynamic')">dynamic</nash-button>
+    <nash-button type="primary" @click="showLoading('spinner-circle')">spinner-circle</nash-button>
   </div>
 </template>
 <script>
