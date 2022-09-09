@@ -71,5 +71,13 @@ export default [
     meta: {
       title: 'Checkbox'
     }
+  },
+  {
+    path: '/switch',
+    name: 'Switch',
+    component: () => import('../pages/switch.vue'),
+    meta: {
+      title: 'Switch'
+    }
   }
 ]

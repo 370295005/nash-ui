@@ -7,4 +7,5 @@ import Mask from './mask'
 import Dialog from './dialog'
 import Input from './input'
 import Checkbox from './checkbox'
-export { Button, Toast, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox }
+import Switch from './switch'
+export { Button, Toast, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch }
