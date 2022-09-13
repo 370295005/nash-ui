@@ -79,5 +79,13 @@ export default [
     meta: {
       title: 'Switch'
     }
+  },
+  {
+    path: '/tip',
+    name: 'Tip',
+    component: () => import('../pages/tip.vue'),
+    meta: {
+      title: 'Tip'
+    }
   }
 ]

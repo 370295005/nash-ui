@@ -1,6 +1,6 @@
-import { Toast, Button, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch } from './modules'
+import { Toast, Button, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch, Tip } from './modules'
 import '@/assets/css/reset.css'
-const componentsList = [Toast, Button, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch]
+const componentsList = [Toast, Button, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch, Tip]
 
 const install = (Vue) => {
   componentsList.forEach((components) => {

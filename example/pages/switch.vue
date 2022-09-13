@@ -5,7 +5,7 @@
     <div class="title">disabled</div>
     <nash-switch v-model="checkValue" disabled>Disabled Switch</nash-switch>
     <div class="title">slot</div>
-    <nash-switch v-model="checkVaue">
+    <nash-switch v-model="checkValue">
       <div class="switch-slot">
         <img :src="avatar" class="avatar" />
         <span style="color: red">图片</span>

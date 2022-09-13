@@ -8,4 +8,5 @@ import Dialog from './dialog'
 import Input from './input'
 import Checkbox from './checkbox'
 import Switch from './switch'
-export { Button, Toast, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch }
+import Tip from './tip'
+export { Button, Toast, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch, Tip }

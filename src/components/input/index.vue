@@ -16,7 +16,7 @@
       @blur="handleBlur"
       @change="HandleChange"
     />
-    <div class="nash-input-clear-icon" v-show="true" @click="clearInput">
+    <div class="nash-input-clear-icon" v-show="_showClear" @click="clearInput">
       <i class="nashic-wrong"></i>
     </div>
     <div class="nash-input-password-icon" v-show="showEye" @click="toggleEye">
