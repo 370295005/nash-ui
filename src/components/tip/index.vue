@@ -1,21 +1,16 @@
 <template>
-  <transition name="nash-tip-zoom">
-    <!-- <div class="nash-tip" :data-pos="position" @click="handleClick">
-      <i class="nash-tip-angle" ref="angle"></i>
-      <i class="nash-tip-close nashic-close" @click.stop="closeTip"></i>
-      <div class="nash-tip-content" v-html="content"></div>
-    </div> -->
-    <div class="nash-tip">
-      <div class="nash-tip-slot">
-        <slot></slot>
-        <div class="nash-tip-container" :data-pos="position">
+  <div class="nash-tip" @click="handleClick">
+    <div class="nash-tip-slot">
+      <slot></slot>
+      <transition name="nash-tip-zoom">
+        <div class="nash-tip-container" :style="{ left, top }" v-show="isVisible" :data-pos="position" ref="tip">
           <i class="nash-tip-angle" ref="angle"></i>
           <i class="nash-tip-close nashic-close" @click.stop="closeTip"></i>
           <div class="nash-tip-content" v-html="content"></div>
         </div>
-      </div>
+      </transition>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
@@ -33,9 +28,55 @@ export default {
     },
     content: String
   },
+  data() {
+    return {
+      // position
+      left: '',
+      top: ''
+    }
+  },
+  watch: {
+    isVisible(nv) {
+      if (nv) {
+        this.$nextTick(() => {
+          const el = this.$slots.default[0].elm
+          const position = this.position
+          const rect = el.getBoundingClientRect()
+          const { left, top, width, height } = rect
+          const tip = this.$refs.tip
+          const tipWidth = tip.offsetWidth
+          const tipHeight = tip.offsetHeight
+          switch (position) {
+            case 'top':
+              this.left = left + width / 2 - tipWidth / 2
+              this.top = top - tipHeight - 10
+              break
+            case 'bottom':
+              this.left = left + width / 2 - tipWidth / 2
+              this.top = top + height + tipHeight + 10
+              break
+            case 'left':
+              this.left = left - tipWidth - 10
+              this.top = top
+              break
+            case 'right':
+              this.left = left + tipWidth + width + 10
+              this.top = top
+              break
+            default:
+              this.left = left + width / 2 - tipWidth / 2
+              this.top = top - tipHeight - 10
+          }
+          this.left += 'px'
+          this.top += 'px'
+        })
+      }
+    }
+  },
+  mounted() {},
   methods: {
     handleClick() {
-      this.hide()
+      this.isVisible = !this.isVisible
       this.$emit(EVENT_CLICK)
     },
     closeTip() {
@@ -48,11 +89,11 @@ export default {
 
 <style lang="less" scoped>
 @import '@/assets/css/default.less';
+
 .nash-tip {
-  position: relative;
   .nash-tip-slot {
     .nash-tip-container {
-      .flex-box(normal,normal);
+      .flex-box(normal, normal);
       max-height: 60px;
       padding: 10px 38px 10px 16px;
       position: absolute;
@@ -62,6 +103,7 @@ export default {
       background: @tip-background;
       border-radius: 5px;
       transition: opacity 0.2s;
+
       &[data-pos='top'],
       &[data-pos='bottom'] {
         .nash-tip-angle {
@@ -69,27 +111,29 @@ export default {
           transform: translateX(-50%);
         }
       }
-      &[data-pos='top'] {
-        top: -100%;
-        left: 50%;
-        transform: translateX(-50%);
+
+      &[data-pos='bottom'] {
         .nash-tip-angle {
           top: 0;
+
           &::before {
             margin-top: -6px;
             transform: rotate(0deg);
           }
         }
       }
-      &[data-pos='bottom'] {
+
+      &[data-pos='top'] {
         .nash-tip-angle {
           bottom: 0;
+
           &::before {
             margin-bottom: -6px;
             transform: rotate(180deg);
           }
         }
       }
+
       &[data-pos='left'],
       &[data-pos='right'] {
         .nash-tip-angle {
@@ -97,26 +141,32 @@ export default {
           transform: translateY(-50%);
         }
       }
-      &[data-pos='left'] {
+
+      &[data-pos='right'] {
         .nash-tip-angle {
           left: 0;
+
           &::before {
             margin-left: -9px;
             transform: rotate(-90deg);
           }
         }
       }
-      &[data-pos='right'] {
+
+      &[data-pos='left'] {
         .nash-tip-angle {
           right: 0;
+
           &::before {
             margin-right: -9px;
             transform: rotate(90deg);
           }
         }
       }
+
       .nash-tip-angle {
         position: absolute;
+
         &::before {
           content: '';
           display: block;
@@ -125,6 +175,7 @@ export default {
           border-color: transparent transparent @tip-background;
         }
       }
+
       .nash-tip-close {
         position: absolute;
         right: 14px;
@@ -138,6 +189,7 @@ export default {
         background: none;
         transform: scale(1.3);
       }
+
       .nash-tip-content {
         max-width: 200px;
         min-height: 18px;
@@ -149,28 +201,35 @@ export default {
     }
   }
 }
+
 .nash-tip-zoom-enter-active {
   animation: tip-in 0.4s;
 }
+
 .nash-tip-zoom-leave-active {
   animation: tip-out 0.2s;
 }
+
 @keyframes tip-in {
   0% {
     transform: scale(0);
   }
+
   50% {
     transform: scale(1.1);
   }
+
   100% {
     transform: scale(1);
   }
 }
+
 @keyframes tip-out {
   from {
     transform: scale(1);
     opacity: 1;
   }
+
   to {
     transform: scale(0);
     opacity: 0;
