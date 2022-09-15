@@ -53,14 +53,14 @@ export default {
               break
             case 'bottom':
               this.left = left + width / 2 - tipWidth / 2
-              this.top = top + height + tipHeight + 10
+              this.top = top + height + 10
               break
             case 'left':
               this.left = left - tipWidth - 10
               this.top = top
               break
             case 'right':
-              this.left = left + tipWidth + width + 10
+              this.left = left + width + 10
               this.top = top
               break
             default:
@@ -73,7 +73,6 @@ export default {
       }
     }
   },
-  mounted() {},
   methods: {
     handleClick() {
       this.isVisible = !this.isVisible
@@ -95,6 +94,7 @@ export default {
     .nash-tip-container {
       .flex-box(normal, normal);
       max-height: 60px;
+      min-height: 40px;
       padding: 10px 38px 10px 16px;
       position: absolute;
       z-index: @tip-zIndex;

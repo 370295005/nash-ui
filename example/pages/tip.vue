@@ -1,20 +1,17 @@
 <template>
   <div class="tip-page">
-    <nash-tip :position="position" content="Nash-Tip">
+    <nash-tip position="left" content="Nash-Tip">
       <nash-button type="primary" @click="changePosition('left')">left</nash-button>
     </nash-tip>
-    <nash-tip :position="position" content="Nash-Tip">
+    <nash-tip position="top" content="Nash-Tip">
       <nash-button type="primary" @click="changePosition('top')">top</nash-button>
     </nash-tip>
-    <nash-tip :position="position" content="Nash-Tip">
+    <nash-tip position="bottom" content="Nash-Tip">
       <nash-button type="primary" @click="changePosition('bottom')">bottom</nash-button>
     </nash-tip>
-    <nash-tip :position="position" content="Nash-Tip">
+    <nash-tip position="right" content="Nash-Tip">
       <nash-button type="primary" @click="changePosition('right')">right</nash-button>
     </nash-tip>
-    <!-- <nash-button type="primary" @click="changePosition('left')">left</nash-button>
-    <nash-button type="primary" @click="changePosition('right')">right</nash-button>
-    <nash-button type="primary" @click="changePosition('bottom')">bottom</nash-button> -->
   </div>
 </template>
 <script>
@@ -39,13 +36,12 @@ export default {
 
   .nash-btn {
     position: relative;
-    width: 343px;
-    margin: 5px 0;
+    width: 100px;
+    margin: 5px auto;
     top: 100px;
 
-    &:nth-child(1) {
-      width: 40px;
-      left: 100px;
+    &:nth-child(2) {
+      margin-top: 50px;
     }
   }
 }
