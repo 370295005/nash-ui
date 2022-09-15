@@ -1,4 +1,4 @@
-const EVENT_CHANGE = 'change'
+import { EVENT_CHANGE } from '@/lib/constanceEvents'
 
 export default {
   methods: {

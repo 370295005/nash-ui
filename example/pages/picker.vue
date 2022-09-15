@@ -1,7 +1,15 @@
 <template>
   <div class="picker-page">
     <nash-button type="primary" @click="showPicker">Picker</nash-button>
-    <nash-picker v-model="isVisible" :picker-list="pickerList" @confirm="confirm" subTitle="标题"></nash-picker>
+    <nash-picker
+      v-model="isVisible"
+      subTitle="标题"
+      :picker-list="pickerList"
+      :selected-index="selectedIndex"
+      @confirm="confirm"
+      @cancel="cancel"
+      @indexChange="indexChange"
+    ></nash-picker>
   </div>
 </template>
 <script>
@@ -72,9 +80,16 @@ export default {
             text: '斯拉达',
             value: '斯拉达'
           }
+        ],
+        [
+          {
+            text: '深圳',
+            value: '深圳'
+          }
         ]
       ],
-      isVisible: false
+      isVisible: false,
+      selectedIndex: [3, 0]
     }
   },
   methods: {
@@ -83,6 +98,12 @@ export default {
     },
     confirm(value) {
       this.$toast({ text: value, delay: 1000 })
+    },
+    indexChange(list) {
+      this.selectedIndex = list
+    },
+    cancel() {
+      this.$toast('picker cancel')
     }
   }
 }

@@ -26,8 +26,11 @@ import NashPopup from '../popup/index.vue'
 import BScroll from 'better-scroll'
 import Wheel from '@better-scroll/wheel'
 import visibleMixins from '@/mixins/visible'
+import { EVENT_CONFIRM, EVENT_CHANGE, EVENT_CANCEL } from '@/lib/constanceEvent'
 BScroll.use(Wheel)
+const EVENT_INDEXCHANGE = 'indexChange'
 const COMPONENTS_NAME = 'nash-picker'
+let pickedValue = []
 export default {
   name: COMPONENTS_NAME,
   mixins: [visibleMixins],
@@ -56,6 +59,10 @@ export default {
     direction: {
       type: String,
       default: 'bottom'
+    },
+    selectedIndex: {
+      type: Array,
+      default: () => []
     }
   },
   watch: {
@@ -74,8 +81,8 @@ export default {
       scroll: null,
       wheels: [],
       value: [],
-      selectedIndex: 0,
-      pickedValue: null
+      // 记录当前选中的index
+      currentIndex: this.selectedIndex
     }
   },
   beforeDestroy() {
@@ -86,22 +93,29 @@ export default {
       this.$nextTick(() => {
         const wrapper = this.$refs.wheelWrapper.children
         const len = wrapper.length
-        this.pickedValue = this.pickerList[0][0].value
+        const pickerLength = this.pickerList.length
+        for (let i = 0; i < pickerLength; i++) {
+          const index = this.selectedIndex[i]
+          pickedValue.push(this.pickerList[i][index].value)
+        }
         for (let i = 0; i < len; i++) {
+          console.log(this.selectedIndex[i])
           this.wheels[i] = new BScroll(wrapper[i], {
             wheel: {
-              selectedIndex: this.selectedIndex || 0,
+              selectedIndex: this.selectedIndex[i] || 0,
               wheelWrapperClass: 'wheel-scroll',
               wheelItemClass: 'wheel-item',
               wheelDisabledItemClass: 'wheel-disabled-item'
             },
-            useTransition: false,
+            useTransition: true,
             probeType: 3
           })
           this.wheels[i].on('wheelIndexChanged', (index) => {
-            this.pickedValue = this.pickerList[i][index].value || this.pickerList[0][0].value
-            this.selectedIndex = index
-            this.$emit('valueChange', this.pickedValue)
+            this.currentIndex[i] = index || this.selectedIndex[i] || 0
+            pickedValue[i] = this.pickerList[i][index].value || this.pickerList[0][0].value
+            // emit当前选中项的index下次打开picker能保持在这个位置
+            this.$emit(EVENT_INDEXCHANGE, this.currentIndex)
+            this.$emit(EVENT_CHANGE, pickedValue)
           })
         }
       })
@@ -121,11 +135,13 @@ export default {
       })
     },
     cancel() {
-      this.$emit('cancel')
+      this.$emit(EVENT_CANCEL)
+      pickedValue = []
       this.hide()
     },
     confirm() {
-      this.$emit('confirm', this.pickedValue)
+      this.$emit(EVENT_CONFIRM, pickedValue)
+      pickedValue = []
       this.hide()
     }
   }
@@ -133,12 +149,14 @@ export default {
 </script>
 <style lang="less" scoped>
 @import '@/assets/css/default.less';
+
 .nash-picker {
   width: 100vw;
   overflow: hidden;
   background-color: @default;
+
   .nash-picker-toolbar {
-    .flex-box(space-between,center);
+    .flex-box(space-between, center);
     width: 100%;
     height: 44px;
     padding: 0 16px;
@@ -146,6 +164,7 @@ export default {
     font-size: 14px;
     color: @info;
     line-height: 44px;
+
     &::befor {
       content: '';
       width: 100%;
@@ -154,22 +173,27 @@ export default {
       bottom: 0;
       background-color: @default-border;
     }
+
     .picker-cancel {
       color: @info;
     }
+
     .picker-confirm {
       color: @primary;
     }
+
     .picker-subtitle {
       color: @black;
       font-size: 16px;
     }
   }
+
   .nash-picker-container {
     width: 100%;
     position: relative;
     overflow: hidden;
     background-color: @default;
+
     .wheel-top,
     .wheel-bottom {
       width: 100%;
@@ -180,12 +204,15 @@ export default {
       transform: translateZ(0);
       background: linear-gradient(to top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.8));
     }
+
     .wheel-top {
       top: 0;
     }
+
     .wheel-bottom {
       bottom: 0;
     }
+
     .wheel-indicator {
       width: 100%;
       height: 40px;
@@ -193,18 +220,22 @@ export default {
       top: 80px;
       background-color: rgba(131, 174, 255, 0.1);
     }
+
     .wheel-wrapper {
-      .flex-box(space-between,center);
+      .flex-box(space-between, center);
       width: 100%;
       overflow: hidden;
+
       .wheel {
         width: 100%;
         height: 200px;
         text-align: center;
         overflow: hidden;
+
         .wheel-scroll {
           position: relative;
           top: 80px;
+
           .wheel-item {
             height: 40px;
             line-height: 40px;

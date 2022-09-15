@@ -7,8 +7,8 @@
 </template>
 
 <script>
+import { EVENT_INPUT } from '@/lib/constanceEvent'
 const CONPONENT_NAME = 'nash-switch'
-const EVENT_INPUT = 'input'
 export default {
   name: CONPONENT_NAME,
   props: {

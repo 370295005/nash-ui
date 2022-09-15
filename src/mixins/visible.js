@@ -1,8 +1,8 @@
-const EVENT_NAME = 'toggle'
+import { EVENT_TOGGLE } from '@/lib/constanceEvent'
 export default {
   model: {
     prop: 'visible',
-    event: EVENT_NAME
+    event: EVENT_TOGGLE
   },
   props: {
     visible: {
@@ -17,18 +17,17 @@ export default {
   },
   watch: {
     visible(nv) {
-      console.log(nv)
       nv ? this.show() : this.hide()
     }
   },
   methods: {
     show() {
       this.isVisible = true
-      this.$emit(EVENT_NAME, true)
+      this.$emit(EVENT_TOGGLE, true)
     },
     hide() {
       this.isVisible = false
-      this.$emit(EVENT_NAME, false)
+      this.$emit(EVENT_TOGGLE, false)
     }
   }
 }

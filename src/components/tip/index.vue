@@ -15,9 +15,8 @@
 
 <script>
 import visibleMixins from '@/mixins/visible'
+import { EVENT_CLICK, EVENT_CLOSE } from '@/lib/constanceEvent'
 const COMPONENT_NAME = 'nash-tip'
-const EVENT_CLICK = 'click'
-const EVENT_CLOSE = 'close'
 export default {
   name: COMPONENT_NAME,
   mixins: [visibleMixins],

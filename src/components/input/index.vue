@@ -29,10 +29,8 @@
 </template>
 
 <script>
+import { EVENT_INPUT, EVENT_BLUR, EVENT_FOCUS } from '@/lib/constanceEvent'
 const COMPONENT_NAME = 'nash-input'
-const EVENT_INPUT = 'input'
-const EVENT_BLUR = 'blur'
-const EVENT_FOCUS = 'focus'
 export default {
   name: COMPONENT_NAME,
   props: {
@@ -120,8 +118,9 @@ export default {
 
 <style lang="less" scoped>
 @import '@/assets/css/default.less';
+
 .nash-input {
-  .flex-box(flex-start,center);
+  .flex-box(flex-start, center);
   width: 100%;
   height: 40px;
   padding: 6px 8px;
@@ -133,9 +132,11 @@ export default {
   transition: border-color 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
   box-sizing: border-box;
   background-color: @default;
+
   &.nash-input-active {
     border-color: @primary;
   }
+
   .nash-input-field {
     width: 100%;
     padding: 0;
@@ -143,16 +144,19 @@ export default {
     border: none;
     z-index: 100;
     background-color: @default;
+
     &::-webkit-input-placeholder {
       color: @info;
     }
   }
+
   .nash-input-clear-icon {
     padding: 4px;
     font-size: 16px;
     color: @info;
     z-index: 200;
   }
+
   .nash-input-password-icon {
     padding: 4px;
     font-size: 16px;
