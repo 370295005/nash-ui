@@ -35,8 +35,8 @@ export default {
   .item {
     .flex-box(center,center);
     .nash-btn {
-      width: 100%;
-      margin: 5px 0px;
+      width: 50%;
+      margin: 5px auto;
     }
   }
 }
