@@ -85,11 +85,15 @@ export default {
           {
             text: '深圳',
             value: '深圳'
+          },
+          {
+            text: '广州',
+            value: '广州'
           }
         ]
       ],
       isVisible: false,
-      selectedIndex: [3, 0]
+      selectedIndex: [3, 2]
     }
   },
   methods: {

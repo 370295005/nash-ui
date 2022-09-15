@@ -68,19 +68,25 @@ export default {
   watch: {
     isVisible(nv) {
       if (nv) {
+        // if (this.wheels.length) {
+        //   console.log(this.wheels)
+        //   this.enableWheel()
+        //   this.refresh()
+        // } else {
         setTimeout(() => {
           this.initWheel()
         }, 200)
+        // }
       } else {
         this.hide()
+        // this.disableWheel()
       }
     }
   },
   data() {
     return {
-      scroll: null,
+      // wheel实例
       wheels: [],
-      value: [],
       // 记录当前选中的index
       currentIndex: this.selectedIndex
     }
@@ -96,13 +102,15 @@ export default {
         const pickerLength = this.pickerList.length
         for (let i = 0; i < pickerLength; i++) {
           const index = this.selectedIndex[i]
-          pickedValue.push(this.pickerList[i][index].value)
+          const value =
+            index > this.pickerList[i].length - 1 ? this.pickerList[i][0].value : this.pickerList[i][index].value
+          pickedValue[i] = value
         }
         for (let i = 0; i < len; i++) {
-          console.log(this.selectedIndex[i])
+          const length = this.pickerList[i].length
           this.wheels[i] = new BScroll(wrapper[i], {
             wheel: {
-              selectedIndex: this.selectedIndex[i] || 0,
+              selectedIndex: this.selectedIndex[i] > length - 1 ? 0 : this.selectedIndex[i],
               wheelWrapperClass: 'wheel-scroll',
               wheelItemClass: 'wheel-item',
               wheelDisabledItemClass: 'wheel-disabled-item'
@@ -111,7 +119,7 @@ export default {
             probeType: 3
           })
           this.wheels[i].on('wheelIndexChanged', (index) => {
-            this.currentIndex[i] = index || this.selectedIndex[i] || 0
+            this.currentIndex[i] = index || 0
             pickedValue[i] = this.pickerList[i][index].value || this.pickerList[0][0].value
             // emit当前选中项的index下次打开picker能保持在这个位置
             this.$emit(EVENT_INDEXCHANGE, this.currentIndex)
@@ -126,6 +134,24 @@ export default {
           wheel.destroy()
         })
       this.wheels = []
+    },
+    // col列的index,index滚动到该列指定的index
+    scrollTo(col, index) {
+      const wheel = this.wheels[index]
+      this.currentIndex[col] = index
+      this.$emit(EVENT_INDEXCHANGE, this.currentIndex)
+      wheel.wheelTo(index)
+    },
+    enableWheel() {
+      for (let i = 0; i < this.pickerList.length; i++) {
+        this.wheels[i].enable()
+        this.wheels[i].wheelTo(this.currentIndex[i])
+      }
+    },
+    disableWheel() {
+      for (let i = 0; i < this.pickerList.length; i++) {
+        this.wheels[i].disable()
+      }
     },
     refresh() {
       this.$nextTick(() => {
