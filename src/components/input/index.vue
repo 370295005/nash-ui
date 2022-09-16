@@ -97,7 +97,6 @@ export default {
     },
     // TODO 点击事件无效，且会失去焦点，导致图标不显示，如果图标一直显示则功能正常
     clearInput(e) {
-      console.log('clear')
       this.inputValue = ''
       this.$refs.input.focus()
     },

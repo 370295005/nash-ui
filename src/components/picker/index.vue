@@ -2,18 +2,20 @@
   <nash-popup :direction="direction" v-model="isVisible">
     <div class="nash-picker">
       <div class="nash-picker-toolbar">
-        <div class="picker-cancel" @click="cancel">{{ cancelText }}</div>
-        <div class="picker-subtitle">{{ subTitle }}</div>
-        <div class="picker-confirm" @click="confirm">{{ confirmText }}</div>
+        <div class="nash-picker-cancel" @click="cancel">{{ cancelText }}</div>
+        <div class="nash-picker-subtitle">{{ subTitle }}</div>
+        <div class="nash-picker-confirm" @click="confirm">{{ confirmText }}</div>
       </div>
       <div class="nash-picker-container">
-        <div class="wheel-top"></div>
-        <div class="wheel-indicator"></div>
-        <div class="wheel-bottom"></div>
-        <div class="wheel-wrapper" ref="wheelWrapper">
-          <div class="wheel" v-for="(item, index) in pickerList" :key="Math.random() + index">
-            <div class="wheel-scroll">
-              <div class="wheel-item" v-for="(data, index) in item" :key="Math.random() + index">{{ data.text }}</div>
+        <div class="nash-wheel-top"></div>
+        <div class="nash-wheel-indicator"></div>
+        <div class="nash-wheel-bottom"></div>
+        <div class="nash-wheel-wrapper" ref="wheelWrapper">
+          <div class="nash-wheel" v-for="(item, index) in pickerList" :key="Math.random() + index">
+            <div class="nash-wheel-scroll">
+              <div class="nash-wheel-item" v-for="(data, index) in item" :key="Math.random() + index">
+                {{ data.text }}
+              </div>
             </div>
           </div>
         </div>
@@ -111,9 +113,9 @@ export default {
           this.wheels[i] = new BScroll(wrapper[i], {
             wheel: {
               selectedIndex: this.selectedIndex[i] > length - 1 ? 0 : this.selectedIndex[i],
-              wheelWrapperClass: 'wheel-scroll',
-              wheelItemClass: 'wheel-item',
-              wheelDisabledItemClass: 'wheel-disabled-item'
+              wheelWrapperClass: 'nash-wheel-scroll',
+              wheelItemClass: 'nash-wheel-item',
+              wheelDisabledItemClass: 'nash-wheel-disabled-item'
             },
             useTransition: true,
             probeType: 3
@@ -191,24 +193,25 @@ export default {
     color: @info;
     line-height: 44px;
 
-    &::befor {
+    &::before {
       content: '';
       width: 100%;
       height: 1px;
       position: absolute;
+      left: 0px;
       bottom: 0;
       background-color: @default-border;
     }
 
-    .picker-cancel {
+    .nash-picker-cancel {
       color: @info;
     }
 
-    .picker-confirm {
+    .nash-picker-confirm {
       color: @primary;
     }
 
-    .picker-subtitle {
+    .nash-picker-subtitle {
       color: @black;
       font-size: 16px;
     }
@@ -220,8 +223,8 @@ export default {
     overflow: hidden;
     background-color: @default;
 
-    .wheel-top,
-    .wheel-bottom {
+    .nash-wheel-top,
+    .nash-wheel-bottom {
       width: 100%;
       height: 80px;
       position: absolute;
@@ -231,15 +234,15 @@ export default {
       background: linear-gradient(to top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.8));
     }
 
-    .wheel-top {
+    .nash-wheel-top {
       top: 0;
     }
 
-    .wheel-bottom {
+    .nash-wheel-bottom {
       bottom: 0;
     }
 
-    .wheel-indicator {
+    .nash-wheel-indicator {
       width: 100%;
       height: 40px;
       position: absolute;
@@ -247,22 +250,22 @@ export default {
       background-color: rgba(131, 174, 255, 0.1);
     }
 
-    .wheel-wrapper {
+    .nash-wheel-wrapper {
       .flex-box(space-between, center);
       width: 100%;
       overflow: hidden;
 
-      .wheel {
+      .nash-wheel {
         width: 100%;
         height: 200px;
         text-align: center;
         overflow: hidden;
 
-        .wheel-scroll {
+        .nash-wheel-scroll {
           position: relative;
           top: 80px;
 
-          .wheel-item {
+          .nash-wheel-item {
             height: 40px;
             line-height: 40px;
           }
