@@ -81,7 +81,6 @@ export default {
         // }
       } else {
         this.hide()
-        // this.disableWheel()
       }
     }
   },
@@ -137,6 +136,28 @@ export default {
         })
       this.wheels = []
     },
+    // createWheel(wrapper, index) {
+    //   const length = this.pickerList[index].length
+    //   if (!this.wheels[index]) {
+    //     const wheel = this.wheels[i] = new BScroll(wheelWrapper.children[i], {
+    //       wheel: {
+    //         selectedIndex: this._indexes[i] || 0,
+    //         wheelWrapperClass: 'nash-wheel-scroll',
+    //         wheelItemClass: 'nash-wheel-item'
+    //       },
+    //       swipeTime: this.swipeTime,
+    //       observeDOM: false,
+    //       useTransition: true
+    //     })
+    //     wheel.on('wheelIndexChanged', (i) => {
+    //       this.currentIndex[i] = index || 0
+    //       this.$emit(EVENT_INDEXCHANGE, this.currentIndex)
+    //     })
+    //   } else {
+    //     this.wheels[index].refresh()
+    //   }
+    //   return this.wheels[index]
+    // },
     // col列的index,index滚动到该列指定的index
     scrollTo(col, index) {
       const wheel = this.wheels[index]
@@ -168,6 +189,7 @@ export default {
       this.hide()
     },
     confirm() {
+      const wheels = this.wheels || []
       this.$emit(EVENT_CONFIRM, pickedValue)
       pickedValue = []
       this.hide()
