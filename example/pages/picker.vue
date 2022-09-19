@@ -4,11 +4,10 @@
     <nash-picker
       v-model="isVisible"
       subTitle="标题"
-      :picker-list="pickerList"
-      :selected-index="selectedIndex"
+      :data="pickerList"
+      :selected-index-list="selectedIndexList"
       @confirm="confirm"
       @cancel="cancel"
-      @indexChange="indexChange"
     ></nash-picker>
   </div>
 </template>
@@ -93,18 +92,20 @@ export default {
         ]
       ],
       isVisible: false,
-      selectedIndex: [3, 2]
+      selectedIndexList: [3, 2]
     }
   },
   methods: {
     showPicker() {
       this.isVisible = true
     },
-    confirm(value) {
-      this.$toast({ text: value, delay: 1000 })
-    },
-    indexChange(list) {
-      this.selectedIndex = list
+    confirm(value, text, index) {
+      this.$dialog.open({
+        type: 'alert',
+        slotContent: `<div style="line-height:1.5">value:${value.join(',')}</br>text:${text.join(
+          ','
+        )}</br>index:${index.join(',')}</div>`
+      })
     },
     cancel() {
       this.$toast('picker cancel')

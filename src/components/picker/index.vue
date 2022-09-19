@@ -11,10 +11,10 @@
         <div class="nash-wheel-indicator"></div>
         <div class="nash-wheel-bottom"></div>
         <div class="nash-wheel-wrapper" ref="wheelWrapper">
-          <div class="nash-wheel" v-for="(item, index) in pickerList" :key="Math.random() + index">
+          <div class="nash-wheel" v-for="(item, index) in pickerData" :key="index">
             <div class="nash-wheel-scroll">
-              <div class="nash-wheel-item" v-for="(data, index) in item" :key="Math.random() + index">
-                {{ data.text }}
+              <div class="nash-wheel-item" v-for="(data, index) in item" :key="index">
+                {{ data.value }}
               </div>
             </div>
           </div>
@@ -23,28 +23,27 @@
     </div>
   </nash-popup>
 </template>
+
 <script>
-import NashPopup from '../popup/index.vue'
 import BScroll from 'better-scroll'
 import Wheel from '@better-scroll/wheel'
+import NashPopup from '@/components/popup/index'
 import visibleMixins from '@/mixins/visible'
 import { EVENT_CONFIRM, EVENT_CHANGE, EVENT_CANCEL } from '@/lib/constanceEvent'
 BScroll.use(Wheel)
-const EVENT_INDEXCHANGE = 'indexChange'
 const COMPONENTS_NAME = 'nash-picker'
-let pickedValue = []
 export default {
   name: COMPONENTS_NAME,
   mixins: [visibleMixins],
-  components: {
-    NashPopup
-  },
+  components: { NashPopup },
   props: {
-    pickerList: {
+    data: {
       type: Array,
-      default: () => {
-        return []
-      }
+      default: () => []
+    },
+    direction: {
+      type: String,
+      default: 'bottom'
     },
     cancelText: {
       type: String,
@@ -52,146 +51,139 @@ export default {
     },
     confirmText: {
       type: String,
-      default: '确定'
+      default: '确认'
     },
     subTitle: {
       type: String,
       default: ''
     },
-    direction: {
-      type: String,
-      default: 'bottom'
+    // 滑动动画时间
+    swipeTime: {
+      type: Number,
+      default: 2000
     },
-    selectedIndex: {
+    // 初始化时每列选中的index
+    selectedIndexList: {
       type: Array,
       default: () => []
-    }
-  },
-  watch: {
-    isVisible(nv) {
-      if (nv) {
-        // if (this.wheels.length) {
-        //   console.log(this.wheels)
-        //   this.enableWheel()
-        //   this.refresh()
-        // } else {
-        setTimeout(() => {
-          this.initWheel()
-        }, 200)
-        // }
-      } else {
-        this.hide()
-      }
+    },
+    // 自动保存滑动的位置
+    autoSaveIndex: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       // wheel实例
       wheels: [],
-      // 记录当前选中的index
-      currentIndex: this.selectedIndex
+      // 当前选中的索引数组
+      currentIndexList: [],
+      // 传进来的数据
+      pickerData: this.data.slice()
+    }
+  },
+  watch: {
+    isVisible(nv) {
+      nv ? this.initWheel() : this.hide()
     }
   },
   beforeDestroy() {
-    this.destoryWheel()
+    this.destroyWheels()
   },
   methods: {
     initWheel() {
-      this.$nextTick(() => {
-        const wrapper = this.$refs.wheelWrapper.children
-        const len = wrapper.length
-        const pickerLength = this.pickerList.length
-        for (let i = 0; i < pickerLength; i++) {
-          const index = this.selectedIndex[i]
-          const value =
-            index > this.pickerList[i].length - 1 ? this.pickerList[i][0].value : this.pickerList[i][index].value
-          pickedValue[i] = value
-        }
-        for (let i = 0; i < len; i++) {
-          const length = this.pickerList[i].length
-          this.wheels[i] = new BScroll(wrapper[i], {
-            wheel: {
-              selectedIndex: this.selectedIndex[i] > length - 1 ? 0 : this.selectedIndex[i],
-              wheelWrapperClass: 'nash-wheel-scroll',
-              wheelItemClass: 'nash-wheel-item',
-              wheelDisabledItemClass: 'nash-wheel-disabled-item'
-            },
-            useTransition: true,
-            probeType: 3
-          })
-          this.wheels[i].on('wheelIndexChanged', (index) => {
-            this.currentIndex[i] = index || 0
-            pickedValue[i] = this.pickerList[i][index].value || this.pickerList[0][0].value
-            // emit当前选中项的index下次打开picker能保持在这个位置
-            this.$emit(EVENT_INDEXCHANGE, this.currentIndex)
-            this.$emit(EVENT_CHANGE, pickedValue)
-          })
-        }
-      })
-    },
-    destoryWheel() {
-      this.wheels &&
-        this.wheels.forEach((wheel) => {
-          wheel.destroy()
+      const length = this.pickerData.length
+      if (!this.wheels.length) {
+        this.$nextTick(() => {
+          const wheelWrapper = this.$refs.wheelWrapper
+          for (let i = 0; i < length; i++) {
+            // props中的索引
+            const index = this.selectedIndexList[i]
+            // 实际最大索引
+            const realMaxIndex = this.pickerData[i].length - 1
+            this.createWheel(wheelWrapper, i)
+            // 如果props的索引超出长度则滑动至最后一个
+            const selectedIndex = index >= realMaxIndex ? realMaxIndex : index
+            this.$set(this.currentIndexList, i, selectedIndex)
+            this.wheels[i].wheelTo(selectedIndex)
+          }
         })
+      } else {
+        for (let i = 0; i < length; i++) {
+          this.wheels[i].wheelTo(this.autoSaveIndex ? this.currentIndexList[i] : this.selectedIndexList[i])
+        }
+      }
+    },
+    // 初始化单个wheel
+    createWheel(wrapper, index) {
+      if (!this.wheels[index]) {
+        const wheel = (this.wheels[index] = new BScroll(wrapper.children[index], {
+          wheel: {
+            wheelWrapperClass: 'nash-wheel-scroll',
+            wheelItemClass: 'nash-wheel-item'
+          },
+          swipeTime: this.swipeTime,
+          observeDOM: false,
+          useTransition: true,
+          probeType: 3
+        }))
+        wheel.wheelTo(this.selectedIndexList[index])
+        wheel.on('scrollEnd', () => {
+          const selectedIndex = wheel.getSelectedIndex()
+          this.$emit(EVENT_CHANGE, index, selectedIndex)
+        })
+        // 滑动时保存索引
+        wheel.on('wheelIndexChanged', (currIndex) => {
+          this.currentIndexList[index] = currIndex
+        })
+      } else {
+        this.wheels[index].refresh()
+        this.wheels[index].wheelTo(this.autoSaveIndex ? this.currentIndexList[index] : this.selectedIndexList[index])
+      }
+    },
+    // 销毁所有wheel
+    destroyWheels() {
+      const wheels = this.wheels
+      wheels.forEach((wheel) => {
+        wheel.destroy()
+      })
       this.wheels = []
     },
-    // createWheel(wrapper, index) {
-    //   const length = this.pickerList[index].length
-    //   if (!this.wheels[index]) {
-    //     const wheel = this.wheels[i] = new BScroll(wheelWrapper.children[i], {
-    //       wheel: {
-    //         selectedIndex: this._indexes[i] || 0,
-    //         wheelWrapperClass: 'nash-wheel-scroll',
-    //         wheelItemClass: 'nash-wheel-item'
-    //       },
-    //       swipeTime: this.swipeTime,
-    //       observeDOM: false,
-    //       useTransition: true
-    //     })
-    //     wheel.on('wheelIndexChanged', (i) => {
-    //       this.currentIndex[i] = index || 0
-    //       this.$emit(EVENT_INDEXCHANGE, this.currentIndex)
-    //     })
-    //   } else {
-    //     this.wheels[index].refresh()
-    //   }
-    //   return this.wheels[index]
-    // },
-    // col列的index,index滚动到该列指定的index
-    scrollTo(col, index) {
-      const wheel = this.wheels[index]
-      this.currentIndex[col] = index
-      this.$emit(EVENT_INDEXCHANGE, this.currentIndex)
+    // 刷新wheel
+    refreshWheels() {
+      const wheels = this.wheels
+      wheels.forEach((wheel) => {
+        wheel.refresh()
+      })
+    },
+    // 滚动到指定位置,colIndex列的索引,index索引
+    wheelTo(colIndex, index) {
+      const wheel = this.wheels[colIndex]
       wheel.wheelTo(index)
     },
-    enableWheel() {
-      for (let i = 0; i < this.pickerList.length; i++) {
-        this.wheels[i].enable()
-        this.wheels[i].wheelTo(this.currentIndex[i])
-      }
-    },
-    disableWheel() {
-      for (let i = 0; i < this.pickerList.length; i++) {
-        this.wheels[i].disable()
-      }
-    },
-    refresh() {
-      this.$nextTick(() => {
-        this.wheels.forEach((wheel) => {
-          wheel.refresh()
-        })
-      })
+    // 设置某列的数据
+    setWheelData(data, index) {
+      const wrapper = this.$refs.wheelWrapper
+      this.$set(this.pickerData, index, data[index])
+      this.createWheel(wrapper, index)
     },
     cancel() {
       this.$emit(EVENT_CANCEL)
-      pickedValue = []
       this.hide()
     },
     confirm() {
-      const wheels = this.wheels || []
-      this.$emit(EVENT_CONFIRM, pickedValue)
-      pickedValue = []
+      const length = this.wheels.length
+      const value = []
+      const text = []
+      const index = []
+      for (let i = 0; i < length; i++) {
+        const target = this.pickerData[i][this.currentIndexList[i]]
+        value[i] = target.value
+        text[i] = target.text
+        index[i] = this.currentIndexList[i]
+      }
+      this.$emit(EVENT_CONFIRM, value, text, index)
       this.hide()
     }
   }

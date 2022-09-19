@@ -6,7 +6,7 @@
         <div class="dialog-close" @click="close" v-if="showClose">
           <i class="nashic-close"></i>
         </div>
-        <div class="dialog-title">{{ title }}</div>
+        <div class="dialog-title" v-if="title">{{ title }}</div>
         <div class="dialog-content" v-if="content && !slotContent">{{ content }}</div>
         <div class="dialog-slot-content" v-if="slotContent && !content" v-html="slotContent"></div>
         <div class="dialog-btns">
@@ -115,6 +115,9 @@ export default {
     font-size: 14px;
     text-align: center;
     color: @info;
+  }
+  .dialog-slot-content {
+    padding: 16px;
   }
   .dialog-btns {
     .flex-box(space-between,center);
