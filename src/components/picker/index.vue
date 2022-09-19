@@ -99,7 +99,7 @@ export default {
           const wheelWrapper = this.$refs.wheelWrapper
           for (let i = 0; i < length; i++) {
             // props中的索引
-            const index = this.selectedIndexList[i]
+            const index = this.selectedIndexList[i] || 0
             // 实际最大索引
             const realMaxIndex = this.pickerData[i].length - 1
             this.createWheel(wheelWrapper, i)
