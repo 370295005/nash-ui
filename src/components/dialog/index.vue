@@ -111,12 +111,15 @@ export default {
     text-align: center;
   }
   .dialog-content {
+    min-height: 100px;
     margin-bottom: 15px;
     font-size: 14px;
     text-align: center;
     color: @info;
   }
   .dialog-slot-content {
+    min-height: 100px;
+    margin-bottom: 44px;
     padding: 16px;
   }
   .dialog-btns {

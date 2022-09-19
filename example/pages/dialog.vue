@@ -62,7 +62,7 @@ export default {
         title: '我是标题',
         confirmText: '我知道了',
         showClose: true,
-        slotContent: `<div class="dialog-slot"><img src="${avatar}" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto;"/></div>`,
+        slotContent: `<div class="dialog-slot"><img src="${avatar}" style="width:200px;height:200px;border-radius:50%;display:block;margin:0 auto;"/></div>`,
         onClose: () => {
           this.$toast('close回调')
         },
