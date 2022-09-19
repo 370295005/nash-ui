@@ -3,7 +3,7 @@
     <div class="nash-picker">
       <div class="nash-picker-toolbar">
         <div class="nash-picker-cancel" @click="cancel">{{ cancelText }}</div>
-        <div class="nash-picker-subtitle">{{ subTitle }}</div>
+        <div class="nash-picker-title">{{ title }}</div>
         <div class="nash-picker-confirm" @click="confirm">{{ confirmText }}</div>
       </div>
       <div class="nash-picker-container">
@@ -53,7 +53,7 @@ export default {
       type: String,
       default: '确认'
     },
-    subTitle: {
+    title: {
       type: String,
       default: ''
     },
@@ -162,11 +162,28 @@ export default {
       const wheel = this.wheels[colIndex]
       wheel.wheelTo(index)
     },
-    // 设置某列的数据
-    setWheelData(data, index) {
+    // 重新设置数据
+    setWheelData(data, selectedIndexList) {
+      this.currentIndexList = selectedIndexList ? [...selectedIndexList] : []
       const wrapper = this.$refs.wheelWrapper
-      this.$set(this.pickerData, index, data[index])
-      this.createWheel(wrapper, index)
+      this.pickerData = data.slice()
+      this.$nextTick(() => {
+        this.pickerData.forEach((item, index) => {
+          this.createWheel(wrapper, index)
+          this.wheels[index].wheelTo(this.currentIndexList[index] || 0)
+        })
+        this.destroyExtraWheels()
+      })
+    },
+    // 销毁多余的wheel
+    destroyExtraWheels() {
+      const length = this.pickerData.length
+      if (this.wheels.length > length) {
+        const extraWheels = this.wheels.splice(length)
+        extraWheels.forEach((wheel) => {
+          wheel.destroy()
+        })
+      }
     },
     cancel() {
       this.$emit(EVENT_CANCEL)
@@ -225,7 +242,7 @@ export default {
       color: @primary;
     }
 
-    .nash-picker-subtitle {
+    .nash-picker-title {
       color: @black;
       font-size: 16px;
     }

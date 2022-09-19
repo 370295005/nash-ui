@@ -4,7 +4,7 @@
     <nash-button type="primary" @click="isVisible1 = true">Muti-Column-Picker</nash-button>
     <nash-picker
       v-model="isVisible"
-      subTitle="标题"
+      title="标题"
       :data="data"
       :selected-index-list="selectedIndexList"
       @confirm="confirm"
@@ -12,7 +12,7 @@
     ></nash-picker>
     <nash-picker
       v-model="isVisible1"
-      subTitle="标题"
+      title="标题"
       :data="data1"
       :selected-index-list="selectedIndexList"
       @confirm="confirm"
