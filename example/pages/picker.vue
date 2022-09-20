@@ -2,6 +2,7 @@
   <div class="picker-page">
     <nash-button type="primary" @click="isVisible = true">Picker</nash-button>
     <nash-button type="primary" @click="isVisible1 = true">Muti-Column-Picker</nash-button>
+    <nash-button type="primary" @click="isVisible2 = true">Cascade-Picker</nash-button>
     <nash-picker
       v-model="isVisible"
       title="标题"
@@ -18,6 +19,13 @@
       @confirm="confirm"
       @cancel="cancel"
     ></nash-picker>
+    <nash-cascade-picker
+      v-model="isVisible2"
+      title="联级选择器"
+      :data="data2"
+      @confirm="confirm"
+      @cancel="cancel"
+    ></nash-cascade-picker>
   </div>
 </template>
 <script>
@@ -164,9 +172,40 @@ export default {
           }
         ]
       ],
+      data2: [
+        {
+          text: '广东省',
+          value: '广东省',
+          children: [
+            {
+              text: '深圳',
+              value: '深圳'
+            },
+            {
+              text: '广州',
+              value: '广州'
+            }
+          ]
+        },
+        {
+          text: '湖南省',
+          value: '湖南省',
+          children: [
+            {
+              text: '长沙',
+              value: '长沙'
+            },
+            {
+              text: '衡阳',
+              value: '衡阳'
+            }
+          ]
+        }
+      ],
       type: '',
       isVisible: false,
       isVisible1: false,
+      isVisible2: false,
       selectedIndexList: []
     }
   },

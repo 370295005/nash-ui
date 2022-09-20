@@ -185,6 +185,44 @@ export default {
         })
       }
     },
+    // 重新装填所有列
+    refill(data) {
+      const res = []
+      if (data.length) {
+        return res
+      }
+      data.forEach((item, index) => {
+        res[index] = this.refillColumn(index, item)
+      })
+      return res
+    },
+    // 重新装填列
+    refillColumn(index, data) {
+      const wrapper = this.$refs.wheelWrapper
+      const scroll = wrapper.children[index].querySelector('.nash-wheel-scroll')
+      let wheel = this.wheels.length ? this.wheels[index] : null
+      let dist = 0
+      if (scroll && wheel) {
+        const oldData = this.pickerData[index]
+        this.$set(this.pickerData, index, data)
+        const selectedIndex = wheel.getSelectedIndex()
+        if (oldData.length) {
+          const oldValue = oldData[selectedIndex].value
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].value === oldValue) {
+              dist = i
+              break
+            }
+          }
+        }
+        this.currentIndexList[index] = dist
+        this.$nextTick(() => {
+          wheel = this.createWheel(wrapper, index)
+          wheel.wheelTo(dist)
+        })
+      }
+      return dist
+    },
     cancel() {
       this.$emit(EVENT_CANCEL)
       this.hide()

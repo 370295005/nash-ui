@@ -9,4 +9,5 @@ import Input from './input'
 import Checkbox from './checkbox'
 import Switch from './switch'
 import Tip from './tip'
-export { Button, Toast, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch, Tip }
+import CascadePicker from './cascade-picker'
+export { Button, Toast, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch, Tip, CascadePicker }
