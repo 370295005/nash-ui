@@ -86,6 +86,11 @@ export default {
   watch: {
     isVisible(nv) {
       nv ? this.initWheel() : this.hide()
+    },
+    data(nv) {
+      if (nv) {
+        this.pickerData = nv.slice()
+      }
     }
   },
   beforeDestroy() {
@@ -131,6 +136,7 @@ export default {
         wheel.wheelTo(this.selectedIndexList[index])
         wheel.on('scrollEnd', () => {
           const selectedIndex = wheel.getSelectedIndex()
+          // 滑动结束时触发，返回列索引，当前索引
           this.$emit(EVENT_CHANGE, index, selectedIndex)
         })
         // 滑动时保存索引
@@ -141,6 +147,7 @@ export default {
         this.wheels[index].refresh()
         this.wheels[index].wheelTo(this.autoSaveIndex ? this.currentIndexList[index] : this.selectedIndexList[index])
       }
+      return this.wheels[index]
     },
     // 销毁所有wheel
     destroyWheels() {

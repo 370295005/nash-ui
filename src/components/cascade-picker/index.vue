@@ -8,7 +8,7 @@
     :confirmText="confirmText"
     :title="title"
     :swipeTime="swipeTime"
-    :selectedIndexList="selectedIndexList"
+    :selectedIndexList="pickerSelectedIndexList"
     :autoSaveIndex="autoSaveIndex"
     @confirm="confirm"
     @cancel="cancel"
@@ -66,22 +66,22 @@ export default {
   },
   data() {
     return {
-      pickerData: this.data.slice(),
+      cascadeData: this.data.slice(),
+      pickerData: [],
       pickerSelectedIndexList: this.selectedIndexList.slice()
     }
   },
   watch: {
     isVisible(nv) {
-      if (nv) {
-        this.updatePickerData()
-      } else {
-        this.hide()
-      }
+      if (!nv) this.hide()
     }
+  },
+  mounted() {
+    this.updatePickerData()
   },
   methods: {
     setData(data, selectedIndexList = []) {
-      this.pickerData = data.slice()
+      this.cascadeData = data.slice()
       this.pickerSelectedIndexList = selectedIndexList.slice()
       this.updatePickerData()
     },
@@ -96,7 +96,7 @@ export default {
       this.$emit(EVENT_CHANGE, colIndex, index)
     },
     updatePickerData(colIndex = 0) {
-      let data = this.pickerData
+      let data = this.cascadeData
       let i = 0
       while (data) {
         if (i >= colIndex) {
@@ -118,12 +118,18 @@ export default {
         data = data.length ? data[this.pickerSelectedIndexList[i]].children : null
         i++
       }
+      if (i < this.pickerData.length) {
+        this.pickerData.splice(i, this.pickerData.length - i)
+      }
+      this.pickerData = this.pickerData.slice()
     },
     confirm(value, text, index) {
       this.$emit(EVENT_CONFIRM, value, text, index)
+      this.hide()
     },
     cancel() {
       this.$emit(EVENT_CANCEL)
+      this.hide()
     }
   }
 }
