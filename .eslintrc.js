@@ -28,6 +28,7 @@ module.exports = {
     'vue/order-in-components': 'off',
     'vue/require-component-is': 'off',
     'vue/no-unused-components': 'off',
+    'no-undef': 'off',
     'prettier/prettier': [
       'error',
       {
