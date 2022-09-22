@@ -89,11 +89,9 @@ export default {
     },
     confirm(value, text, index) {
       this.$emit(EVENT_CONFIRM, value, text, index)
-      this.hide()
     },
     cancel() {
       this.$emit(EVENT_CANCEL)
-      this.hide()
     }
   }
 }
