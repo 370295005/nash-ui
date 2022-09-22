@@ -3,7 +3,8 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    es6: true
+    es6: true,
+    jest: true
   },
   extends: ['standard', 'plugin:vue/essential', '@vue/prettier', 'plugin:prettier/recommended'],
   rules: {

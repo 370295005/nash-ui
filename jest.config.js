@@ -27,5 +27,7 @@ module.exports = {
   // 是否输出覆盖率
   collectCoverage: true,
   coverageReporters: ['lcov', 'text-summary'],
-  testURL: 'http://localhost:3070'
+  testEnvironmentOptions: {
+    url: 'http://localhost:3070'
+  }
 }
