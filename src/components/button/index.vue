@@ -1,5 +1,5 @@
 <template>
-  <div class="nash-btn" :class="btnClass" @click="click">
+  <div class="nash-btn" :class="[btnClass, btnDisabled]" @click="click">
     <slot></slot>
   </div>
 </template>
@@ -18,16 +18,24 @@ export default {
     color: {
       type: String,
       default: ''
+    },
+    // 禁用状态
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     btnClass() {
       return this.type === '' ? 'nash-btn' : `nash-btn-${this.type}`
+    },
+    btnDisabled() {
+      return this.disabled ? 'nash-btn-disabled' : ''
     }
   },
   methods: {
     click(event) {
-      if (this.disable) {
+      if (this.disabled) {
         event.preventDefault()
         event.stopPropagation()
         return
@@ -37,21 +45,13 @@ export default {
   }
 }
 </script>
-
+<!-- TODO 移动端下按钮active触发不正常 PC正常-->
 <style lang="less" scoped>
 @import '@/assets/css/color.less';
 .btn-active(@color) {
   &:active {
-    color: @color;
     background-color: @color;
     border-color: @color;
-  }
-}
-.btn-hover(@bgColor, @fontColor, @borderColor) {
-  &:hover {
-    background-color: @bgColor;
-    color: @fontColor;
-    border-color: @borderColor;
   }
 }
 .border-color (@color) {
@@ -59,7 +59,6 @@ export default {
 }
 .nash-btn {
   .btn-active(@default-active);
-  .btn-hover(@default-hover,@primary,#ecf5ff);
   .border-color(@default-border);
   padding: 12px 20px;
   position: relative;
@@ -74,40 +73,40 @@ export default {
   transition: 0.2s;
   box-sizing: border-box;
   cursor: pointer;
+  user-select: none;
 }
 .nash-btn-primary {
   .btn-active(@default-active);
-  .btn-hover(@primary-hover,@default,@primary-hover);
   .border-color(@primary-border);
   background-color: @primary;
   color: @default;
 }
 .nash-btn-success {
   .btn-active(@success-active);
-  .btn-hover(@success-border,@default,@success-border);
   .border-color(@success-border);
   background-color: @success;
   color: @default;
 }
 .nash-btn-info {
   .btn-active(@info-active);
-  .btn-hover(@info-hover,@default,@info-hover);
   .border-color(@info-border);
   background-color: @info;
   color: @default;
 }
 .nash-btn-warning {
   .btn-active(@warning-active);
-  .btn-hover(@warning-hover,@default,@warning-hover);
   .border-color(@warning);
   background-color: @warning;
   color: @default;
 }
 .nash-btn-error {
   .btn-active(@error-active);
-  .btn-hover(@error-hover,@default,@error-hover);
   .border-color(@error);
   background-color: @error;
   color: @default;
+}
+.nash-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 </style>
