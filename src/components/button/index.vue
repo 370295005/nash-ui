@@ -45,7 +45,8 @@ export default {
   }
 }
 </script>
-<!-- TODO 移动端下按钮active触发不正常 PC正常-->
+<!-- TODO 移动端下按钮active触发不正常 PC正常 SBIOS-->
+<!-- -webkit-tap-highlight-color:transparent -->
 <style lang="less" scoped>
 @import '@/assets/css/color.less';
 .btn-active(@color) {
@@ -74,6 +75,7 @@ export default {
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .nash-btn-primary {
   .btn-active(@default-active);
