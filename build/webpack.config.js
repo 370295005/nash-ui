@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const path = require('path')
 module.exports = {
@@ -58,13 +59,25 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /.js$/,
+        test: /.(eot|ttf|woff2?)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            esModule: false,
+            name: 'fonts/[name].[ext]'
+          }
+        },
+        exclude: /node_module/
+      },
+      {
+        test: /.jsx?$/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env']
           }
         },
+        include: path.resolve(__dirname, '../src'),
         exclude: /node_module/
       },
       {
@@ -74,12 +87,53 @@ module.exports = {
       }
     ]
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [
+    new VueLoaderPlugin(),
+    new CssMinimizerPlugin({
+      minimizerOptions: {
+        preset: [
+          'default',
+          {
+            discardComments: { removeAll: true }
+          }
+        ]
+      }
+    })
+  ],
   stats: {
     children: false,
     modules: false,
     assets: false
   },
   devtool: process.env.NODE_ENV === 'production' ? false : 'eval-cheap-module-source-map',
-  target: 'web'
+  target: 'web',
+  optimization: {
+    chunkIds: 'deterministic',
+    innerGraph: false,
+    moduleIds: 'size',
+    splitChunks: {
+      chunks: 'async',
+      minSize: 20000,
+      minRemainingSize: 0,
+      minChunks: 1,
+      maxSize: 20000,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true
+        },
+        betterScroll: {
+          name: 'better-scorll',
+          test: /[\\/]node_modules[\\/]better-scroll/,
+          minChunks: 1,
+          priority: 1,
+          minSize: 0
+        }
+      }
+    }
+  }
 }

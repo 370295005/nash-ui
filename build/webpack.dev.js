@@ -10,9 +10,10 @@ module.exports = merge(baseConfig, {
   },
   output: {
     publicPath: '/',
-    filename: 'js/[name].js',
+    filename: 'js/[name].[contenthash:8].js',
     path: path.resolve(__dirname, '../dist'),
-    clean: true
+    clean: true,
+    chunkFilename: 'js/[name].[contenthash:8].js'
   },
   devServer: {
     static: {

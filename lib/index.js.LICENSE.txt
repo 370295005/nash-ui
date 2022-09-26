@@ -1,0 +1,5 @@
+/*!
+ * better-scroll / wheel
+ * (c) 2016-2021 ustbhuangyi
+ * Released under the MIT License.
+ */
