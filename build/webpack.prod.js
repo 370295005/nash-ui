@@ -31,7 +31,7 @@ module.exports = merge(webpackBaseConfig, {
   entry,
   output: {
     path: path.resolve(__dirname, '../lib'),
-    filename: (pathData) => (pathData.chunk.name === 'index' ? 'index.js' : assetsPath('[name]/[name].js')),
+    filename: (pathData) => (pathData.chunk.name === 'index' ? 'index.js' : assetsPath('[name]/index.js')),
     library: 'nash', // 类库导出
     libraryTarget: 'umd',
     umdNamedDefine: true,

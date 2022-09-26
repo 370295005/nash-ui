@@ -21,7 +21,6 @@ export default {
 <style lang="less" scoped>
 @import '@/assets/css/color.less';
 @import '@/assets/css/zIndex.less';
-@import '@/assets/css/animate.less';
 .nash-mask {
   width: 100vw;
   height: 100vh;

@@ -62,7 +62,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '@/assets/css/default.less';
+@import '@/assets/css/style.less';
+@import '@/assets/css/color.less';
+@import '@/assets/icon/nash-icon.less';
+@import '@/assets/css/zIndex.less';
+
 .nash-checkbox {
   width: 100%;
   height: 44px;

@@ -60,12 +60,10 @@ module.exports = {
       },
       {
         test: /.(eot|ttf|woff2?)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            esModule: false,
-            name: 'fonts/[name].[ext]'
-          }
+        // file-loader打包后无法加载字体
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name].[ext]'
         },
         exclude: /node_module/
       },

@@ -116,8 +116,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '@/assets/css/default.less';
-
+@import '@/assets/css/style.less';
+@import '@/assets/css/color.less';
+@import '@/assets/icon/nash-icon.less';
 .nash-input {
   .flex-box(flex-start, center);
   width: 100%;
