@@ -1,10 +1,12 @@
 <template>
-  <div class="nash-btn" :class="[btnClass, btnDisabled]" @click="click">
+  <div class="nash-btn" :class="[btnClass, btnDisabled, btnRound]" @click="click">
     <slot></slot>
   </div>
 </template>
 
 <script>
+import { returnExportsFromRuntime } from 'webpack/lib/RuntimeGlobals'
+
 const COMPONENT_NAME = 'nash-button'
 export default {
   name: COMPONENT_NAME,
@@ -23,6 +25,11 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    // 圆角按钮
+    round: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -31,6 +38,9 @@ export default {
     },
     btnDisabled() {
       return this.disabled ? 'nash-btn-disabled' : ''
+    },
+    btnRound() {
+      return this.round ? 'nash-btn-round' : ''
     }
   },
   methods: {
@@ -49,18 +59,16 @@ export default {
 <!-- -webkit-tap-highlight-color:transparent -->
 <style lang="less" scoped>
 @import '@/assets/css/color.less';
-.btn-active(@color) {
+@import '@/assets/css/style.less';
+.btn-active(@color:null) {
   &:active {
     background-color: @color;
     border-color: @color;
   }
 }
-.border-color (@color) {
-  border: 1px solid @color;
-}
 .nash-btn {
   .btn-active(@default-active);
-  .border-color(@default-border);
+  .border(@default-border);
   padding: 12px 20px;
   position: relative;
   display: inline-block;
@@ -77,33 +85,36 @@ export default {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+.nash-btn-round {
+  border-radius: 999px;
+}
 .nash-btn-primary {
   .btn-active(@default-active);
-  .border-color(@primary-border);
+  .border(@primary-border);
   background-color: @primary;
   color: @default;
 }
 .nash-btn-success {
   .btn-active(@success-active);
-  .border-color(@success-border);
+  .border(@success-border);
   background-color: @success;
   color: @default;
 }
 .nash-btn-info {
   .btn-active(@info-active);
-  .border-color(@info-border);
+  .border(@info-border);
   background-color: @info;
   color: @default;
 }
 .nash-btn-warning {
   .btn-active(@warning-active);
-  .border-color(@warning);
+  .border(@warning);
   background-color: @warning;
   color: @default;
 }
 .nash-btn-error {
   .btn-active(@error-active);
-  .border-color(@error);
+  .border(@error);
   background-color: @error;
   color: @default;
 }

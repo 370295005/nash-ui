@@ -1,7 +1,7 @@
 <template>
   <div class="button-page">
     <div class="item" v-for="item in buttonList" :key="item.text">
-      <nash-button :type="item.type" :disabled="item.disabled">{{ item.text }}</nash-button>
+      <nash-button :type="item.type" :disabled="item.disabled" :round="item.round">{{ item.text }}</nash-button>
     </div>
   </div>
 </template>
@@ -38,6 +38,11 @@ export default {
           type: 'success',
           text: '禁用状态',
           disabled: true
+        },
+        {
+          type: 'info',
+          text: '圆角按钮',
+          round: true
         }
       ]
     }
