@@ -1,7 +1,5 @@
 <template>
-  <transition name="fade">
-    <div class="nash-mask" @click="maskClick"></div>
-  </transition>
+  <div class="nash-mask" @click="maskClick"></div>
 </template>
 <script>
 const COMPONENT_NAME = 'nash-mask'
