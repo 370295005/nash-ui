@@ -34,7 +34,7 @@ export default {
 .tip-page {
   .flex-box(center, center, column);
 
-  .nash-btn {
+  .nash-button {
     position: relative;
     width: 100px;
     margin: 5px auto;

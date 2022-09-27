@@ -38,7 +38,7 @@ export default {
 @import '@/assets/css/style.less';
 .popup-page {
   .flex-box(center,center,column);
-  .nash-btn {
+  .nash-button {
     width: 343px;
     margin: 5px 0;
   }

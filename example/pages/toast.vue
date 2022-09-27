@@ -18,7 +18,7 @@ export default {
 @import '@/assets/css/style.less';
 .toast-page {
   .flex-box(center,center,column);
-  .nash-btn {
+  .nash-button {
     width: 343px;
     margin: 5px 0;
   }

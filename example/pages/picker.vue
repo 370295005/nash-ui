@@ -226,7 +226,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .picker-page {
-  .nash-btn {
+  .nash-button {
     width: 100%;
     margin: 5px 0;
   }

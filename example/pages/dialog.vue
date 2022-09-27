@@ -80,7 +80,7 @@ export default {
 
 <style lang="less" scoped>
 .dialog-page {
-  .nash-btn {
+  .nash-button {
     width: 100%;
     margin: 5px 0;
   }

@@ -34,7 +34,7 @@ export default {
 .index-page {
   .item {
     .flex-box(center,center);
-    .nash-btn {
+    .nash-button {
       width: 50%;
       margin: 5px auto;
     }

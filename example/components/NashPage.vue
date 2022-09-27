@@ -27,7 +27,7 @@ export default {
   height: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #f7f8fa;
+  background-color: #fff;
   .back {
     width: 22px;
     height: 22px;
@@ -42,7 +42,7 @@ export default {
   .title {
     width: 100%;
     height: 44px;
-    background-color: #fff;
+    background-color: #f7f8fa;
     font-size: 18px;
     font-weight: bold;
     line-height: 44px;

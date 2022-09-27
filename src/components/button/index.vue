@@ -1,12 +1,10 @@
 <template>
-  <div class="nash-btn" :class="[btnClass, btnDisabled, btnRound]" @click="click">
+  <div class="nash-button" :class="[btnClass, btnDisabled, btnRound]" @click="click">
     <slot></slot>
   </div>
 </template>
 
 <script>
-import { returnExportsFromRuntime } from 'webpack/lib/RuntimeGlobals'
-
 const COMPONENT_NAME = 'nash-button'
 export default {
   name: COMPONENT_NAME,
@@ -34,13 +32,13 @@ export default {
   },
   computed: {
     btnClass() {
-      return this.type === '' ? 'nash-btn' : `nash-btn-${this.type}`
+      return this.type === '' ? 'nash-button' : `nash-button-${this.type}`
     },
     btnDisabled() {
-      return this.disabled ? 'nash-btn-disabled' : ''
+      return this.disabled ? 'nash-button-disabled' : ''
     },
     btnRound() {
-      return this.round ? 'nash-btn-round' : ''
+      return this.round ? 'nash-button-round' : ''
     }
   },
   methods: {
@@ -66,7 +64,7 @@ export default {
     border-color: @color;
   }
 }
-.nash-btn {
+.nash-button {
   .btn-active(@default-active);
   .border(@default-border);
   padding: 12px 20px;
@@ -85,40 +83,40 @@ export default {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
-.nash-btn-round {
+.nash-button-round {
   border-radius: 999px;
 }
-.nash-btn-primary {
-  .btn-active(@default-active);
+.nash-button-primary {
+  .btn-active(@primary-active);
   .border(@primary-border);
   background-color: @primary;
   color: @default;
 }
-.nash-btn-success {
+.nash-button-success {
   .btn-active(@success-active);
   .border(@success-border);
   background-color: @success;
   color: @default;
 }
-.nash-btn-info {
+.nash-button-info {
   .btn-active(@info-active);
   .border(@info-border);
   background-color: @info;
   color: @default;
 }
-.nash-btn-warning {
+.nash-button-warning {
   .btn-active(@warning-active);
   .border(@warning);
   background-color: @warning;
   color: @default;
 }
-.nash-btn-error {
+.nash-button-error {
   .btn-active(@error-active);
   .border(@error);
   background-color: @error;
   color: @default;
 }
-.nash-btn-disabled {
+.nash-button-disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }

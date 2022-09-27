@@ -1,8 +1,29 @@
 <template>
   <div class="button-page">
-    <div class="item" v-for="item in buttonList" :key="item.text">
-      <nash-button :type="item.type" :disabled="item.disabled" :round="item.round">{{ item.text }}</nash-button>
-    </div>
+    <content-container title="基本按钮">
+      <div class="item" v-for="item in buttonList" :key="item.text">
+        <nash-button :type="item.type" :disabled="item.disabled" :round="item.round" :inline="item.inline">
+          {{ item.text }}
+        </nash-button>
+      </div>
+    </content-container>
+    <content-container title="圆角按钮">
+      <nash-button type="primary" round>圆角按钮</nash-button>
+      <nash-button type="success" round>圆角按钮</nash-button>
+    </content-container>
+    <content-container title="禁用状态">
+      <nash-button type="primary" disabled>禁用按钮</nash-button>
+      <nash-button type="warning" disabled>禁用按钮</nash-button>
+    </content-container>
+    <content-container title="按钮组">
+      <nash-button-group>
+        <nash-button type="primary">上</nash-button>
+        <nash-button type="success">播放</nash-button>
+        <nash-button type="info">暂停</nash-button>
+        <nash-button type="primary">喜欢</nash-button>
+        <nash-button type="error">下</nash-button>
+      </nash-button-group>
+    </content-container>
   </div>
 </template>
 <script>
@@ -33,16 +54,6 @@ export default {
         {
           type: 'info',
           text: '信息按钮'
-        },
-        {
-          type: 'success',
-          text: '禁用状态',
-          disabled: true
-        },
-        {
-          type: 'info',
-          text: '圆角按钮',
-          round: true
         }
       ]
     }

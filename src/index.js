@@ -10,7 +10,8 @@ import {
   Checkbox,
   Switch,
   Tip,
-  CascadePicker
+  CascadePicker,
+  ButtonGroup
 } from './modules'
 import '@/assets/css/reset.css'
 const componentsList = [
@@ -25,7 +26,8 @@ const componentsList = [
   Checkbox,
   Switch,
   Tip,
-  CascadePicker
+  CascadePicker,
+  ButtonGroup
 ]
 
 const install = (Vue) => {
