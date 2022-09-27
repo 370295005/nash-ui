@@ -87,5 +87,13 @@ export default [
     meta: {
       title: 'Tip'
     }
+  },
+  {
+    path: '/icon',
+    name: 'Icon',
+    component: () => import('../pages/icon.vue'),
+    meta: {
+      title: 'Icon'
+    }
   }
 ]
