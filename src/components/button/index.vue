@@ -68,8 +68,10 @@ export default {
   .btn-active(@default-active);
   .border(@default-border);
   padding: 12px 20px;
+  margin: 0;
   position: relative;
   display: inline-block;
+  white-space: nowrap;
   text-align: center;
   line-height: 1;
   outline: 0;

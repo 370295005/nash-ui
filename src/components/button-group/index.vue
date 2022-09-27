@@ -22,6 +22,7 @@ export default {
     &:first-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
+      border-right-color: rgba(255, 255, 255, 0.5);
     }
     &:not(:first-child):not(:last-child) {
       border-radius: 0;
@@ -30,21 +31,11 @@ export default {
       margin-left: -1px;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
+      border-left-color: rgba(255, 255, 255, 0.5);
     }
     // TODO 按钮组边框有点问题
     &:not(:last-child) {
-      margin-right: -4px;
-      position: relative;
-      &::before {
-        content: '';
-        position: absolute;
-        width: 1px;
-        height: 70%;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: @default-border;
-      }
+      margin-right: -1px;
     }
   }
 }
