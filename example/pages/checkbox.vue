@@ -5,9 +5,12 @@
     <div class="title">square</div>
     <nash-checkbox v-model="checkValue" type="square">label</nash-checkbox>
     <div class="title">position:right</div>
-    <nash-checkbox v-model="checkValue" type="circle" position="right">label</nash-checkbox>
+    <nash-checkbox v-model="checkValue" type="circle" position="right">右侧显示</nash-checkbox>
     <div class="title">disabled</div>
-    <nash-checkbox v-model="checkValue" type="circle" position="right" disabled>label</nash-checkbox>
+    <nash-checkbox v-model="checkValue" type="circle" position="right" disabled>禁用</nash-checkbox>
+    <div class="title">自定义颜色</div>
+    <nash-checkbox v-model="checkValue" type="circle" position="right" color="green">绿色</nash-checkbox>
+    <nash-checkbox v-model="checkValue" type="circle" position="right" color="purple">紫色</nash-checkbox>
   </div>
 </template>
 
