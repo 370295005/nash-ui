@@ -11,7 +11,8 @@ import {
   Switch,
   Tip,
   CascadePicker,
-  ButtonGroup
+  ButtonGroup,
+  DateTimePicker
 } from './modules'
 import '@/assets/css/reset.css'
 const componentsList = [
@@ -27,7 +28,8 @@ const componentsList = [
   Switch,
   Tip,
   CascadePicker,
-  ButtonGroup
+  ButtonGroup,
+  DateTimePicker
 ]
 
 const install = (Vue) => {

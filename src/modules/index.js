@@ -11,4 +11,20 @@ import Switch from './switch'
 import Tip from './tip'
 import CascadePicker from './cascade-picker'
 import ButtonGroup from './button-group'
-export { Button, Toast, Loading, Popup, Picker, Mask, Dialog, Input, Checkbox, Switch, Tip, CascadePicker, ButtonGroup }
+import DateTimePicker from './date-time-picker'
+export {
+  Button,
+  Toast,
+  Loading,
+  Popup,
+  Picker,
+  Mask,
+  Dialog,
+  Input,
+  Checkbox,
+  Switch,
+  Tip,
+  CascadePicker,
+  ButtonGroup,
+  DateTimePicker
+}

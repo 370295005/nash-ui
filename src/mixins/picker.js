@@ -4,10 +4,6 @@ export default {
       type: Array,
       default: () => []
     },
-    direction: {
-      type: String,
-      default: 'bottom'
-    },
     cancelText: {
       type: String,
       default: '取消'

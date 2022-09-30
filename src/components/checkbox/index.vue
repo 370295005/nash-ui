@@ -3,7 +3,7 @@
     <label class="nash-checkbox-container">
       <input class="nash-checkbox-input" type="checkbox" :disabled="disabled" v-model="checkValue" />
       <span class="nash-checkbox-icon" :class="borderClass">
-        <i :class="checkboxIconClass"></i>
+        <i :class="checkboxIconClass" :style="{ color }"></i>
       </span>
       <span class="nash-checkbox-label">
         <slot>
@@ -31,6 +31,10 @@ export default {
     position: {
       type: String,
       default: 'left'
+    },
+    color: {
+      type: String,
+      default: ''
     }
   },
   computed: {

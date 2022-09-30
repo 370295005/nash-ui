@@ -97,14 +97,16 @@ export default {
     },
     // TODO 点击事件无效，且会失去焦点，导致图标不显示，如果图标一直显示则功能正常
     clearInput(e) {
-      this.inputValue = ''
+      e.preventDefault()
       this.$refs.input.focus()
+      this.inputValue = ''
     },
     handleFocus(e) {
       this.isFocus = true
       this.$emit(EVENT_FOCUS, e)
     },
     handleBlur(e) {
+      console.log(e)
       this.isFocus = false
       this.$emit(EVENT_BLUR, e)
     },

@@ -1,5 +1,5 @@
 <template>
-  <nash-popup :direction="direction" v-model="isVisible">
+  <nash-popup direction="bottom" v-model="isVisible">
     <div class="nash-picker">
       <div class="nash-picker-toolbar">
         <div class="nash-picker-cancel" @click="cancel">{{ cancelText }}</div>

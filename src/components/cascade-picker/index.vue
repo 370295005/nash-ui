@@ -3,7 +3,6 @@
     ref="picker"
     v-model="isVisible"
     :data="pickerData"
-    :direction="direction"
     :cancelText="cancelText"
     :confirmText="confirmText"
     :title="title"
@@ -38,6 +37,15 @@ export default {
   watch: {
     isVisible(nv) {
       if (!nv) this.hide()
+    },
+    data: {
+      handler(nv) {
+        if (nv) {
+          this.cascadeData = nv.slice()
+          this.updatePickerData()
+        }
+      },
+      deep: true
     }
   },
   mounted() {

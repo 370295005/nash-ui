@@ -3,6 +3,7 @@
     <nash-button type="primary" @click="isVisible = true">Picker</nash-button>
     <nash-button type="primary" @click="isVisible1 = true">Muti-Column-Picker</nash-button>
     <nash-button type="primary" @click="isVisible2 = true">Cascade-Picker</nash-button>
+    <nash-button type="primary" @click="isVisible3 = true">Date-Time-Picker</nash-button>
     <nash-picker
       v-model="isVisible"
       title="标题"
@@ -19,13 +20,22 @@
       @confirm="confirm"
       @cancel="cancel"
     ></nash-picker>
-    <nash-cascade-picker
+    <!-- <nash-cascade-picker
       v-model="isVisible2"
       title="联级选择器"
       :data="data2"
       @confirm="confirm"
       @cancel="cancel"
-    ></nash-cascade-picker>
+    ></nash-cascade-picker> -->
+    <nash-date-time-picker
+      v-model="isVisible3"
+      type="date"
+      title="年月日选择器"
+      :startDate="new Date('2021-01-01')"
+      :endDate="new Date()"
+      @confirm="confirm"
+      @cancel="cancel"
+    ></nash-date-time-picker>
   </div>
 </template>
 <script>
@@ -206,6 +216,7 @@ export default {
       isVisible: false,
       isVisible1: false,
       isVisible2: false,
+      isVisible3: false,
       selectedIndexList: []
     }
   },
