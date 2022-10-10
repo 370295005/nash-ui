@@ -7,7 +7,7 @@
     :confirmText="confirmText"
     :title="title"
     :swipeTime="swipeTime"
-    :selectedIndexList="selectedIndexList"
+    :selectedIndexList="currentDateIndexList"
     :autoSaveIndex="autoSaveIndex"
     @confirm="confirm"
     @cancel="cancel"
@@ -57,7 +57,8 @@ export default {
   },
   data() {
     return {
-      pickerData: []
+      pickerData: [],
+      currentDateIndexList: []
     }
   },
   watch: {
@@ -79,20 +80,18 @@ export default {
     initData() {
       this.createDataList()
     },
-    // 月份切换时，天数有问题
     createDataList() {
       const { type, startDate, endDate } = this
       const startYear = startDate.getFullYear()
       const startMonth = startDate.getMonth() + 1
-      const startDay = startDate.getDate()
       const endYear = endDate.getFullYear()
       const endMonth = endDate.getMonth() + 1
       const endDay = endDate.getDate()
-      let [currentYear, currentMonth, currentDate] = [startYear, null, null]
+      let [currentYear, currentMonth] = [startYear, null]
       if (type === 'date') {
         // 年份选择
         const list = Array.from({ length: endYear - startYear + 1 }).map((_, index) => {
-          const value = this.getFlatDate(startDate)[0] - index
+          const value = this.getFlatDate(startDate)[0] - index + 1
           const text = value
           currentYear = value
           const children = Array.from({ length: currentYear === endYear ? endMonth - startMonth + 1 : 12 }).map(
@@ -100,15 +99,13 @@ export default {
               const value = monthIndex + 1
               const text = value
               currentMonth = value
-              console.log('当前月', currentMonth)
-              console.log('当前月天数', new Date(currentYear, currentMonth, 0).getDate())
               const children = Array.from({
                 length:
                   currentYear === endYear && currentMonth === endMonth
                     ? endDay
                     : new Date(currentYear, currentMonth, 0).getDate()
               }).map((_, dayIndex) => {
-                const value = endDay - dayIndex + 1
+                const value = dayIndex + 1
                 const text = value
                 return {
                   value,
@@ -118,7 +115,7 @@ export default {
               return {
                 value,
                 text,
-                children: children.reverse()
+                children
               }
             }
           )
@@ -128,6 +125,15 @@ export default {
             children
           }
         })
+        // TODO 滚动至currentDate
+        if (this.currentDate instanceof Date) {
+          const [year, month, day] = this.getFlatDate(this.currentDate)
+          // 找到年的索引
+          const index = list.findIndex((item) => {
+            return +item.value === +year
+          })
+          this.currentDateIndexList = [index, month - 1, day - 1]
+        }
         this.pickerData = list.reverse()
       }
     },

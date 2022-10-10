@@ -46,6 +46,10 @@ export default {
         }
       },
       deep: true
+    },
+    // TODO 时间选择器还没计算完选中的项,后续优化?
+    selectedIndexList(nv) {
+      this.pickerSelectedIndexList = nv
     }
   },
   mounted() {

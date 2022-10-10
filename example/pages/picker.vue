@@ -31,6 +31,7 @@
       v-model="isVisible3"
       type="date"
       title="年月日选择器"
+      :currentDate="new Date('2022-03-19')"
       :startDate="new Date('2021-01-01')"
       :endDate="new Date()"
       @confirm="confirm"
