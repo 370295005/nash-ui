@@ -47,5 +47,5 @@ module.exports = merge(webpackBaseConfig, {
     new EslintWebpackPlugin()
   ],
   devtool: false,
-  stats: 'minimal'
+  stats: 'errors-only'
 })

@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
 module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json', 'jsx'],
@@ -98,11 +99,7 @@ module.exports = {
       }
     })
   ],
-  stats: {
-    children: false,
-    modules: false,
-    assets: false
-  },
+  stats: 'errors-warnings',
   devtool: process.env.NODE_ENV === 'production' ? false : 'eval-cheap-module-source-map',
   target: 'web',
   optimization: {
@@ -132,6 +129,13 @@ module.exports = {
           minSize: 0
         }
       }
-    }
+    },
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        // 去除额外注释
+        extractComments: false
+      })
+    ]
   }
 }
