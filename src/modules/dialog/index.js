@@ -1,6 +1,7 @@
 import NashDialog from '@/components/dialog'
-
+import NashMask from '@/components/mask'
 NashDialog.install = (Vue) => {
+  Vue.component(NashMask.name, NashMask)
   Vue.component(NashDialog.name, NashDialog)
   const Dialog = Vue.extend(NashDialog)
   const profile = new Dialog({

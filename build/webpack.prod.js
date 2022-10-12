@@ -38,9 +38,6 @@ module.exports = merge(webpackBaseConfig, {
     clean: true
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }),
     new MiniCssExtractPlugin({
       filename: (pathData) => (pathData.chunk.name === 'index' ? 'index.min.css' : '[name]/[name].css')
     }),

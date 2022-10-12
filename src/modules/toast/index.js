@@ -1,7 +1,9 @@
 import NashToast from '@/components/toast'
+import NashMask from '@/components/mask'
 
 NashToast.install = (Vue, options) => {
   Vue.component(NashToast.name, NashToast)
+  Vue.component(NashMask.name, NashMask)
   const Toast = Vue.extend(NashToast)
   const profile = new Toast({
     el: document.createElement('div')

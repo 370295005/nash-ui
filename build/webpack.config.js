@@ -1,13 +1,14 @@
+const path = require('path')
+const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const path = require('path')
 const TerserPlugin = require('terser-webpack-plugin')
 module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json', 'jsx'],
     alias: {
-      '@': path.resolve('__dirname', '../src')
+      '@': path.resolve(__dirname, '../src')
     }
   },
   module: {
@@ -97,6 +98,9 @@ module.exports = {
           }
         ]
       }
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ],
   stats: 'errors-warnings',
