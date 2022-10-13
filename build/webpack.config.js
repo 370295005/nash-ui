@@ -98,10 +98,10 @@ module.exports = {
           }
         ]
       }
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
+    // new webpack.DefinePlugin({
+    //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    // })
   ],
   stats: 'errors-warnings',
   devtool: process.env.NODE_ENV === 'production' ? false : 'eval-cheap-module-source-map',
