@@ -3,7 +3,6 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const TerserPlugin = require('terser-webpack-plugin')
 module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json', 'jsx'],
@@ -133,13 +132,6 @@ module.exports = {
           minSize: 0
         }
       }
-    },
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        // 去除额外注释
-        extractComments: false
-      })
-    ]
+    }
   }
 }

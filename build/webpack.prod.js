@@ -43,6 +43,13 @@ module.exports = merge(webpackBaseConfig, {
     }),
     new EslintWebpackPlugin()
   ],
+  minimize: true,
+  minimizer: [
+    new TerserPlugin({
+      // 去除额外注释
+      extractComments: false
+    })
+  ],
   devtool: false,
   stats: 'errors-only'
 })
