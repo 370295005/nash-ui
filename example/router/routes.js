@@ -95,5 +95,13 @@ export default [
     meta: {
       title: 'Icon'
     }
+  },
+  {
+    path: '/collapse',
+    name: 'Collapse',
+    component: () => import('../pages/collapse.vue'),
+    meta: {
+      title: 'Collapse'
+    }
   }
 ]

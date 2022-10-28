@@ -7,7 +7,9 @@
 </template>
 <script>
 import CollapseItem from './collapse-item.vue'
+const COMPONENT_NAME = 'nash-collapse'
 export default {
+  name: COMPONENT_NAME,
   model: {
     prop: 'activeName',
     event: 'toggle'

@@ -12,7 +12,8 @@ import {
   Tip,
   CascadePicker,
   ButtonGroup,
-  DateTimePicker
+  DateTimePicker,
+  Collapse
 } from './modules'
 import '@/assets/css/reset.css'
 const componentsList = [
@@ -29,7 +30,8 @@ const componentsList = [
   Tip,
   CascadePicker,
   ButtonGroup,
-  DateTimePicker
+  DateTimePicker,
+  Collapse
 ]
 
 const install = (Vue) => {

@@ -7,6 +7,7 @@ import './assets/css/reset.css'
 import '../lib/index.min.css'
 Vue.component('ContentContainer', ContentContainer)
 Vue.use(NashUI)
+console.log(NashUI)
 const vm = new Vue({
   el: '#app',
   router,
