@@ -13,7 +13,8 @@ import {
   CascadePicker,
   ButtonGroup,
   DateTimePicker,
-  Collapse
+  Collapse,
+  NoticeBar
 } from './modules'
 import '@/assets/css/reset.css'
 const componentsList = [
@@ -31,7 +32,8 @@ const componentsList = [
   CascadePicker,
   ButtonGroup,
   DateTimePicker,
-  Collapse
+  Collapse,
+  NoticeBar
 ]
 
 const install = (Vue) => {

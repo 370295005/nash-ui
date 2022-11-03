@@ -40,7 +40,6 @@
   </div>
 </template>
 <script>
-// TODO 关闭picker时会自动选中项会瞬间变为第一项
 export default {
   data() {
     return {

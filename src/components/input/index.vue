@@ -16,10 +16,10 @@
       @blur="handleBlur"
       @change="HandleChange"
     />
-    <div class="nash-input-clear-icon" v-show="_showClear" @click="clearInput">
+    <div class="nash-input-clear-icon" v-show="_showClear" @click.stop="clearInput">
       <i class="nashic-wrong"></i>
     </div>
-    <div class="nash-input-password-icon" v-show="showEye" @click="toggleEye">
+    <div class="nash-input-password-icon" v-show="showEye" @click.stop="toggleEye">
       <i :class="eyeClass"></i>
     </div>
     <div class="nash-input-after" v-if="$slots.after">

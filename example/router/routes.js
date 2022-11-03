@@ -103,5 +103,13 @@ export default [
     meta: {
       title: 'Collapse'
     }
+  },
+  {
+    path: '/notice-bar',
+    name: 'NoticeBar',
+    component: () => import('../pages/notice-bar.vue'),
+    meta: {
+      title: 'NoticeBar'
+    }
   }
 ]

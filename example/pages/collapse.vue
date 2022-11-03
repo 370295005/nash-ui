@@ -3,7 +3,6 @@
     <content-container title="基础用法">
       <nash-collapse v-model="activeName">
         <nash-collapse-item title="标题" name="1">折叠面板基础用法</nash-collapse-item>
-        <nash-collapse-item title="标题1" name="2" disabled>禁用状态的折叠面板</nash-collapse-item>
       </nash-collapse>
     </content-container>
     <content-container title="手风琴">
@@ -44,7 +43,7 @@ export default {
       activeName: ['1'],
       activeName1: '1',
       activeName2: ['1'],
-      activeName3: ['1']
+      activeName3: ['1', '2']
     }
   }
 }
