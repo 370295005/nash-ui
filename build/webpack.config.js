@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   resolve: {
@@ -87,17 +86,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin(),
-    new CssMinimizerPlugin({
-      minimizerOptions: {
-        preset: [
-          'default',
-          {
-            discardComments: { removeAll: true }
-          }
-        ]
-      }
-    })
+    new VueLoaderPlugin()
     // new webpack.DefinePlugin({
     //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     // })

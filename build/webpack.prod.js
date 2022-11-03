@@ -1,11 +1,12 @@
 /*  webpack.prod.js */
 const path = require('path')
 const glob = require('glob')
-const webpack = require('webpack')
 const { merge } = require('webpack-merge')
+const TerserPlugin = require('terser-webpack-plugin')
 const webpackBaseConfig = require('./webpack.config.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const EslintWebpackPlugin = require('eslint-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const assetsPath = (_path) => {
   return path.posix.join('', _path)
 }
@@ -38,18 +39,30 @@ module.exports = merge(webpackBaseConfig, {
     clean: true
   },
   plugins: [
+    new CssMinimizerPlugin({
+      minimizerOptions: {
+        preset: [
+          'default',
+          {
+            discardComments: { removeAll: true }
+          }
+        ]
+      }
+    }),
     new MiniCssExtractPlugin({
       filename: (pathData) => (pathData.chunk.name === 'index' ? 'index.min.css' : '[name]/[name].css')
     }),
     new EslintWebpackPlugin()
   ],
-  minimize: true,
-  minimizer: [
-    new TerserPlugin({
-      // 去除额外注释
-      extractComments: false
-    })
-  ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        // 去除额外注释
+        extractComments: false
+      })
+    ]
+  },
   devtool: false,
   stats: 'errors-only'
 })

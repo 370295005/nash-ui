@@ -1,4 +1,4 @@
-import Collapse from '@/componets/collapse'
+import Collapse from '@/components/collapse'
 import CollapseItem from '@/components/collapse/collapse-item'
 
 Collapse.install = (Vue) => {

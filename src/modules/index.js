@@ -13,7 +13,6 @@ import CascadePicker from './cascade-picker'
 import ButtonGroup from './button-group'
 import DateTimePicker from './date-time-picker'
 import Collapse from './collapse'
-console.log(Collapse)
 export {
   Button,
   Toast,

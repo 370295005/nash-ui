@@ -53,8 +53,6 @@ export default {
   }
 }
 </script>
-<!-- TODO 移动端下按钮active触发不正常 PC正常 SBIOS-->
-<!-- -webkit-tap-highlight-color:transparent -->
 <style lang="less" scoped>
 @import '@/assets/css/color.less';
 @import '@/assets/css/style.less';
