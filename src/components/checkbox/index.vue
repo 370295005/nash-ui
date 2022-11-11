@@ -6,9 +6,7 @@
         <i :class="checkboxIconClass" :style="{ color }"></i>
       </span>
       <span class="nash-checkbox-label">
-        <slot>
-          {{ label }}
-        </slot>
+        <slot></slot>
       </span>
     </label>
   </div>
@@ -22,7 +20,6 @@ export default {
   name: COMPONENT_NAME,
   props: {
     value: Boolean,
-    label: String,
     disabled: Boolean,
     type: {
       Type: String,
@@ -35,15 +32,23 @@ export default {
     color: {
       type: String,
       default: ''
+    },
+    name: {
+      type: [String, Number],
+      default: ''
     }
   },
   computed: {
     checkValue: {
       get() {
-        return this.value
+        return this.name ? this.parent?.value.includes(this.name) : this.value
       },
       set(newValue) {
-        this.$emit(EVENT_INPUT, newValue)
+        if (this.name) {
+          this.parent.toggleCheckValue(this.name, newValue)
+        } else {
+          this.$emit(EVENT_INPUT, newValue)
+        }
       }
     },
     isSquare() {
@@ -60,6 +65,9 @@ export default {
     },
     borderClass() {
       return this.isSquare ? 'nashic-square-border' : 'nashic-round-border'
+    },
+    parent() {
+      return this.$parent || null
     }
   }
 }
@@ -138,7 +146,7 @@ export default {
       }
       i {
         color: @primary;
-        transform: scale(1.23);
+        transform: scale(1.25);
       }
     }
   }
@@ -149,12 +157,12 @@ export default {
         transition: all 0.2s;
       }
       &::before {
-        color: #ccc;
+        color: @checkbox-disabled;
         display: inline-block;
-        transform: scale(1.24);
+        transform: scale(1.25);
       }
       i {
-        color: @disabled;
+        color: @checkbox-disabled;
       }
     }
   }

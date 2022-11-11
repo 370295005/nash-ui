@@ -1,5 +1,3 @@
-<!-- 折叠面板 -->
-<!-- https://vant-contrib.gitee.io/vant/#/zh-CN/collapse -->
 <template>
   <div class="nash-collapse">
     <slot></slot>
@@ -18,12 +16,6 @@ export default {
   },
   components: {
     CollapseItem
-  },
-  watch: {
-    value: {
-      handler: function (nv) {},
-      deep: true
-    }
   },
   methods: {
     toggleCollapse(name, open) {

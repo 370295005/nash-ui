@@ -7,6 +7,7 @@ import Mask from './mask'
 import Dialog from './dialog'
 import Input from './input'
 import Checkbox from './checkbox'
+import CheckboxGroup from './checkbox-group'
 import Switch from './switch'
 import Tip from './tip'
 import CascadePicker from './cascade-picker'
@@ -30,5 +31,6 @@ export {
   ButtonGroup,
   DateTimePicker,
   Collapse,
-  NoticeBar
+  NoticeBar,
+  CheckboxGroup
 }
