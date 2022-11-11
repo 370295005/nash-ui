@@ -1,34 +1,56 @@
 <template>
-  <div class="nash-notice-bar">
+  <div class="nash-notice-bar" :style="{ backgroundColor, color }">
     <slot name="nash-notice-bar-left"></slot>
-    <slot v-if="$slots.default"></slot>
-    <div class="nash-notice-bar-content" v-else>
-      {{ text }}
+    <div class="nash-notice-bar-warpper">
+      <div class="nash-notice-bar-content" ref="content">
+        {{ text }}
+      </div>
     </div>
     <slot name="nash-notice-bar-right"></slot>
   </div>
 </template>
 <script>
-import slotMixins from '@/mixins/slots.js'
 const COMPONENT_NAME = 'nash-notice-bar'
 export default {
   name: COMPONENT_NAME,
-  mixins: [slotMixins],
   props: {
     text: String,
-    color: String,
-    backgroundColor: String,
+    color: {
+      type: String,
+      default: '#fff'
+    },
+    backgroundColor: {
+      type: String,
+      default: '#409eff'
+    },
+    // 延迟时间 s
     delay: {
       type: [String, Number],
       default: 1
     },
+    // 速度
     speed: {
       type: [String, Number],
       default: 60
+    },
+    // 是否滚动s
+    scrollable: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
-    console.log(this.slots())
+    this.startScroll()
+  },
+  methods: {
+    startScroll() {
+      const content = this.$refs.content
+      console.log(content.offsetWidth)
+      window.requestAnimationFrame(() => {
+        content.style.transform = 'translateX(10px)'
+      })
+      // if (!this.scrollable) return
+    }
   }
 }
 </script>
@@ -40,5 +62,14 @@ export default {
   padding: 0 16px;
   font-size: 14px;
   line-height: 24px;
+  overflow: hidden;
+  .nash-notice-bar-warpper {
+    .flex-box(normal,center);
+    flex: 1;
+    overflow: hidden;
+    .nash-notice-bar-content {
+      white-space: nowrap;
+    }
+  }
 }
 </style>
