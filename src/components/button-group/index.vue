@@ -15,27 +15,27 @@ export default {
 </script>
 <style lang="less" scoped>
 @import '@/assets/css/color.less';
+@import '@/assets/css/style.less';
 .nash-button-group {
+  .flex-box(flex-start,center);
   > .nash-button {
-    margin: 0 -1px;
     display: inline-block;
     &:first-child {
+      border-right: none;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
       border-right-color: rgba(255, 255, 255, 0.5);
     }
     &:not(:first-child):not(:last-child) {
       border-radius: 0;
+      border-left: none;
+      border-right: none;
     }
     &:last-child {
       margin-left: -1px;
+      border-left: none;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
-      border-left-color: rgba(255, 255, 255, 0.5);
-    }
-    // TODO 按钮组边框有点问题
-    &:not(:last-child) {
-      margin-right: -1px;
     }
   }
 }
