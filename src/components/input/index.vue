@@ -1,5 +1,9 @@
 <template>
-  <div class="nash-input" :class="{ 'nash-input-active': isFocus }">
+  <div
+    class="nash-input"
+    :class="{ 'nash-input-active': isFocus, 'nash-input-disabled': disabled }"
+    :style="{ borderColor: isFocus ? activeBorderColor : '#dcdfe6' }"
+  >
     <div class="nash-input-before" v-if="$slots.before">
       <slot name="before"></slot>
     </div>
@@ -16,7 +20,7 @@
       @blur="handleBlur"
       @change="HandleChange"
     />
-    <div class="nash-input-clear-icon" v-show="_showClear" @click.stop="clearInput">
+    <div class="nash-input-clear-icon" v-show="_showClear" @touchstart="clearInput">
       <i class="nashic-wrong"></i>
     </div>
     <div class="nash-input-password-icon" v-show="showEye" @click.stop="toggleEye">
@@ -63,6 +67,10 @@ export default {
     showEye: {
       type: Boolean,
       default: false
+    },
+    activeBorderColor: {
+      type: String,
+      default: '#409eff'
     }
   },
   data() {
@@ -95,15 +103,18 @@ export default {
     toggleEye(e) {
       this.showPassword = !this.showPassword
     },
-    // TODO 点击事件无效，且会失去焦点，导致图标不显示，如果图标一直显示则功能正常
+    // BUG 点击事件无效，且会失去焦点，导致图标不显示，如果图标一直显示则功能正常
+    // FIXED 事件改成touchstart?
     clearInput(e) {
       e.preventDefault()
       this.$refs.input.focus()
       this.inputValue = ''
     },
     handleFocus(e) {
-      this.isFocus = true
-      this.$emit(EVENT_FOCUS, e)
+      if (!this.readonly && !this.disabled) {
+        this.isFocus = true
+        this.$emit(EVENT_FOCUS, e)
+      }
     },
     handleBlur(e) {
       console.log(e)
@@ -124,8 +135,8 @@ export default {
 .nash-input {
   .flex-box(flex-start, center);
   width: 100%;
-  height: 40px;
-  padding: 6px 8px;
+  height: 38px;
+  padding: 5px 10px;
   line-height: 1;
   border-radius: 2px;
   font-size: 14px;
@@ -136,9 +147,13 @@ export default {
   background-color: @default;
 
   &.nash-input-active {
-    border-color: @primary;
+    border-color: @input-border-color;
   }
-
+  &.nash-input-disabled {
+    .nash-input-field {
+      color: @input-disabled;
+    }
+  }
   .nash-input-field {
     width: 100%;
     padding: 0;
@@ -163,6 +178,9 @@ export default {
     padding: 4px;
     font-size: 16px;
     color: @black;
+  }
+  .nash-input-before {
+    margin-right: 5px;
   }
 }
 </style>
