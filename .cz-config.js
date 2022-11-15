@@ -20,7 +20,9 @@ module.exports = {
       value: 'perf',
       name: 'perf: 性能优化'
     },
-    { value: 'test', name: 'test: 增加测试' }
+    { value: 'test', name: 'test: 增加测试' },
+    { value: 'merge', name: 'merge: 合并分支' },
+    { value: 'deps', name: 'deps: 修改package(-lock).json' }
   ],
 
   scopes: [
@@ -30,7 +32,7 @@ module.exports = {
     ['docs', '文案文案相关'],
     ['styles', '样式相关'],
     ['deps', '项目依赖'],
-    ['other', '其他修改'],
+    ['other', '其他修改']
     // 如果选择 custom，后面会让你再输入一个自定义的 scope。也可以不设置此项，把后面的 allowCustomScopes 设置为 true
   ].map(([value, description]) => {
     return {
