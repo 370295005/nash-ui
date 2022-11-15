@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --config build/webpack.dev.js",
     "test": "jest",
     "lint": "eslint --ext .html,.js,.vue src example --fix",
-    "husky": "husky install",
+    "prepare": "husky install",
     "commit": "git cz"
   },
   "keywords": [
