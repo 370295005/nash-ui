@@ -179,7 +179,7 @@ export default {
         this.$set(this.pickerData, index, data)
         const selectedIndex = wheel.getSelectedIndex()
         if (oldData.length) {
-          const oldValue = oldData[selectedIndex].value
+          const oldValue = oldData[selectedIndex]?.value || ''
           for (let i = 0; i < data.length; i++) {
             if (data[i].value === oldValue) {
               dist = i

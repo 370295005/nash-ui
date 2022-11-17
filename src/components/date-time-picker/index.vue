@@ -35,7 +35,7 @@ export default {
       default: 'date'
     },
     // 起始时间默认2000年一月一日
-    startDate: {
+    startTime: {
       type: Date,
       default: () => new Date('2000-01-01')
     },
@@ -50,8 +50,8 @@ export default {
       default: () => {}
     },
     // TODO增加默认进入时选中的天数
-    currentDate: {
-      type: Date,
+    currentTime: {
+      type: [Date, String],
       default: () => new Date()
     }
   },
@@ -81,9 +81,9 @@ export default {
       this.createDataList()
     },
     createDataList() {
-      const { type, startDate, endDate } = this
-      const startYear = startDate.getFullYear()
-      const startMonth = startDate.getMonth() + 1
+      const { type, startTime, endDate } = this
+      const startYear = startTime.getFullYear()
+      const startMonth = startTime.getMonth() + 1
       const endYear = endDate.getFullYear()
       const endMonth = endDate.getMonth() + 1
       const endDay = endDate.getDate()
@@ -91,7 +91,7 @@ export default {
       if (type === 'date') {
         // 年份选择
         const list = Array.from({ length: endYear - startYear + 1 }).map((_, index) => {
-          const value = this.getFlatDate(startDate)[0] - index + 1
+          const value = this.getFlatDate(startTime)[0] - index + 1
           const text = value
           currentYear = value
           const children = Array.from({ length: currentYear === endYear ? endMonth - startMonth + 1 : 12 }).map(
@@ -126,20 +126,20 @@ export default {
           }
         })
         // TODO 滚动至currentDate
-        if (this.currentDate instanceof Date) {
-          const [year, month, day] = this.getFlatDate(this.currentDate)
+        if (this.currentTime instanceof Date) {
+          const [year, month, day] = this.getFlatDate(this.currentTime)
           // 找到年的索引
           const index = list.findIndex((item) => {
             return +item.value === +year
           })
-          this.currentDateIndexList = [index, month - 1, day - 1]
+          this.currentDateIndexList = [index + 1, month - 1, day - 1]
         }
         this.pickerData = list.reverse()
       }
     },
     getFlatDate(date) {
-      const currentDate = +date || +new Date()
-      const formatedDate = parseTime(currentDate, '{y}-{m}-{d}')
+      const currentTime = +date || +new Date()
+      const formatedDate = parseTime(currentTime, '{y}-{m}-{d}')
       const dateArr = formatedDate.split('-').map((e) => +e)
       return dateArr
     }

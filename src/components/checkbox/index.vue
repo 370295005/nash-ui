@@ -14,7 +14,6 @@
 
 <script>
 import { EVENT_INPUT } from '@/lib/constanceEvent'
-// TODO 增加按钮组 checkbox-group
 const COMPONENT_NAME = 'nash-checkbox'
 export default {
   name: COMPONENT_NAME,

@@ -20,20 +20,20 @@
       @confirm="confirm"
       @cancel="cancel"
     ></nash-picker>
-    <!-- <nash-cascade-picker
+    <nash-cascade-picker
       v-model="isVisible2"
       title="联级选择器"
       :data="data2"
       @confirm="confirm"
       @cancel="cancel"
-    ></nash-cascade-picker> -->
+    ></nash-cascade-picker>
     <nash-date-time-picker
       v-model="isVisible3"
       type="date"
       title="年月日选择器"
-      :currentDate="new Date('2022-03-19')"
-      :startDate="new Date('2021-01-01')"
-      :endDate="new Date()"
+      :currentTime="new Date('2022-03-19')"
+      :startTime="new Date('2021-01-01')"
+      :endTime="new Date()"
       @confirm="confirm"
       @cancel="cancel"
     ></nash-date-time-picker>
