@@ -102,7 +102,7 @@ export default {
         wheel.on('scrollEnd', () => {
           const selectedIndex = wheel.getSelectedIndex()
           // 滑动结束时触发，返回列索引，当前索引
-          this.$emit(EVENT_CHANGE, index, selectedIndex)
+          this.$emit(EVENT_CHANGE, index, selectedIndex, this.pickerData[index][selectedIndex].value)
         })
         // 滑动时保存索引
         wheel.on('wheelIndexChanged', (currIndex) => {

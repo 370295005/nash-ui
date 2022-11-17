@@ -63,13 +63,13 @@ export default {
     },
     // 滚动结束触发的函数
     // colIndex当前列的索引 index索引
-    change(colIndex, index) {
+    change(colIndex, index, newValue) {
       if (index !== this.pickerSelectedIndexList[colIndex]) {
         this.$set(this.pickerSelectedIndexList, colIndex, index)
         // this.pickerSelectedIndexList.splice(colIndex, 1, index)
         this.updatePickerData(colIndex + 1)
       }
-      this.$emit(EVENT_CHANGE, colIndex, index)
+      this.$emit(EVENT_CHANGE, colIndex, index, newValue)
     },
     updatePickerData(colIndex = 0) {
       let data = this.cascadeData

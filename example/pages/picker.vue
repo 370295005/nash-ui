@@ -3,7 +3,8 @@
     <nash-button type="primary" @click="isVisible = true">Picker</nash-button>
     <nash-button type="primary" @click="isVisible1 = true">Muti-Column-Picker</nash-button>
     <nash-button type="primary" @click="isVisible2 = true">Cascade-Picker</nash-button>
-    <nash-button type="primary" @click="isVisible3 = true">Date-Time-Picker</nash-button>
+    <nash-button type="primary" @click="isVisible3 = true">Date-Picker</nash-button>
+    <nash-button type="primary" @click="isVisible4 = true">Time-Picker</nash-button>
     <nash-picker
       v-model="isVisible"
       title="标题"
@@ -11,6 +12,7 @@
       :selected-index-list="selectedIndexList"
       @confirm="confirm"
       @cancel="cancel"
+      @change="change"
     ></nash-picker>
     <nash-picker
       v-model="isVisible1"
@@ -19,6 +21,7 @@
       :selected-index-list="selectedIndexList"
       @confirm="confirm"
       @cancel="cancel"
+      @change="change"
     ></nash-picker>
     <nash-cascade-picker
       v-model="isVisible2"
@@ -26,6 +29,7 @@
       :data="data2"
       @confirm="confirm"
       @cancel="cancel"
+      @change="change"
     ></nash-cascade-picker>
     <nash-date-time-picker
       v-model="isVisible3"
@@ -36,6 +40,18 @@
       :endTime="new Date()"
       @confirm="confirm"
       @cancel="cancel"
+      @change="change"
+    ></nash-date-time-picker>
+    <nash-date-time-picker
+      v-model="isVisible4"
+      type="time"
+      title="时间选择器"
+      currentTime="12:00:12"
+      startTime="08:30:00"
+      endTime="15:20:20"
+      @confirm="confirm"
+      @cancel="cancel"
+      @change="change"
     ></nash-date-time-picker>
   </div>
 </template>
@@ -217,6 +233,7 @@ export default {
       isVisible1: false,
       isVisible2: false,
       isVisible3: false,
+      isVisible4: false,
       selectedIndexList: []
     }
   },
@@ -231,6 +248,9 @@ export default {
     },
     cancel() {
       this.$toast('picker cancel')
+    },
+    change(colIndex, index, newValue) {
+      this.$toast(`${colIndex},${index},${newValue}`)
     }
   }
 }
