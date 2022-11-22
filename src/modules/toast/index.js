@@ -32,6 +32,7 @@ NashToast.install = (Vue, options) => {
         profile.visible = false
       }, delay || 1000)
     }
+    return profile
   }
   Vue.prototype.$toast = method
 }

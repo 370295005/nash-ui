@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     btnClass() {
-      return this.type === '' ? 'nash-button' : `nash-button-${this.type}`
+      return this.type === '' ? '' : `nash-button-${this.type}`
     },
     btnDisabled() {
       return this.disabled ? 'nash-button-disabled' : ''
