@@ -31,6 +31,12 @@
             <i class="nashic-question"></i>
           </template>
         </nash-collapse-item>
+        <nash-collapse-item title="标题3" name="3">
+          自定义图标折叠面板
+          <template #icon>
+            <i class="nashic-question"></i>
+          </template>
+        </nash-collapse-item>
       </nash-collapse>
     </content-container>
   </div>

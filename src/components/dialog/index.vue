@@ -3,18 +3,22 @@
     <div class="nash-dialog" v-show="isVisible">
       <nash-mask :maskCloseable="false" v-show="mask"></nash-mask>
       <div class="nash-dialog-container">
-        <div class="dialog-close" @click="close" v-if="showClose">
+        <div class="nash-dialog-close" @click="close" v-if="showClose">
           <i class="nashic-close"></i>
         </div>
-        <div class="dialog-title" v-if="title">{{ title }}</div>
-        <div class="dialog-content" v-if="content && !slotContent">{{ content }}</div>
-        <div class="dialog-slot-content" v-if="slotContent && !content" v-html="slotContent"></div>
-        <div class="dialog-btns">
-          <div class="dialog-btn confirm" :style="{ width: type === 'btn' ? '49%' : '100%' }" @click="confirm">
+        <div class="nash-dialog-title" v-if="title">{{ title }}</div>
+        <div class="nash-dialog-content" v-if="content && !slotContent">{{ content }}</div>
+        <div class="nash-dialog-slot-content" v-if="slotContent && !content" v-html="slotContent"></div>
+        <div class="nash-dialog-btns">
+          <div
+            class="nash-dialog-btn nash-dialog-confirm"
+            :style="{ width: type === 'btn' ? '49%' : '100%' }"
+            @click="confirm"
+          >
             {{ confirmText }}
           </div>
-          <div class="line" v-if="type === 'btn'"></div>
-          <div class="dialog-btn cancel" v-if="type === 'btn'" @click="cancel">{{ cancelText }}</div>
+          <div class="nash-dialog-line" v-if="type === 'btn'"></div>
+          <div class="nash-dialog-btn nash-dialog-cancel" v-if="type === 'btn'" @click="cancel">{{ cancelText }}</div>
         </div>
       </div>
     </div>
@@ -97,7 +101,7 @@ export default {
   border-radius: 5px;
   z-index: @mask-content-zIndex;
   animation: dialog-zoom 0.4s;
-  .dialog-close {
+  .nash-dialog-close {
     position: absolute;
     right: 0;
     width: 30px;
@@ -105,24 +109,24 @@ export default {
     padding: 4px;
     font-size: 22px;
   }
-  .dialog-title {
+  .nash-dialog-title {
     margin: 15px 0;
     font-size: 16px;
     text-align: center;
   }
-  .dialog-content {
+  .nash-dialog-content {
     min-height: 100px;
     margin-bottom: 15px;
     font-size: 14px;
     text-align: center;
     color: @info;
   }
-  .dialog-slot-content {
+  .nash-dialog-slot-content {
     min-height: 100px;
     margin-bottom: 44px;
     padding: 16px;
   }
-  .dialog-btns {
+  .nash-dialog-btns {
     .flex-box(space-between,center);
     width: 100%;
     height: 44px;
@@ -131,7 +135,7 @@ export default {
     position: absolute;
     bottom: 0;
     border-top: 1px solid @default-border;
-    .line {
+    .nash-dialog-line {
       width: 1px;
       height: 44px;
       background-color: @default-border;
@@ -140,14 +144,14 @@ export default {
       left: 50%;
       transform: translateX(-50%);
     }
-    .dialog-btn {
+    .nash-dialog-btn {
       height: 44px;
       text-align: center;
       flex: 1;
-      &.confirm {
+      &.nash-dialog-confirm {
         color: @primary;
       }
-      &:cancel {
+      &.nash-dialog-cancel {
         width: 49%;
         color: @info;
       }

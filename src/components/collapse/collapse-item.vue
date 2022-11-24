@@ -6,7 +6,8 @@
         <div>{{ title }}</div>
         <slot name="back-title"></slot>
       </div>
-      <div class="nash-collapse-item-icon">
+      <slot v-if="$slots.icon" name="icon"></slot>
+      <div class="nash-collapse-item-icon" v-else>
         <i class="nashic-select"></i>
       </div>
     </div>

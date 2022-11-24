@@ -39,6 +39,7 @@ describe('nash-button test', () => {
         default: '<img />'
       }
     })
-    expect(wrapper.contains('img')).toBeTruthy()
+    expect(wrapper.find('img').exists()).toBe(true)
+    expect(wrapper.find('a').exists()).not.toBe(true)
   })
 })

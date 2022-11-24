@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     showDialog() {
-      this.$dialog.open({
+      this.$dialog({
         type: 'alert',
         title: '我是标题',
         content: '我是内容',
@@ -25,7 +25,7 @@ export default {
       })
     },
     showDialog1() {
-      this.$dialog.open({
+      this.$dialog({
         type: 'btn',
         title: '我是标题',
         content: '我是内容',
@@ -39,7 +39,7 @@ export default {
       })
     },
     showDialog2() {
-      this.$dialog.open({
+      this.$dialog({
         type: 'btn',
         title: '我是标题',
         content: '我是内容',
@@ -57,7 +57,7 @@ export default {
       })
     },
     showDialog3() {
-      this.$dialog.open({
+      this.$dialog({
         type: 'btn',
         title: '我是标题',
         confirmText: '我知道了',
