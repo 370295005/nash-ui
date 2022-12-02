@@ -10,7 +10,8 @@
     "test": "jest",
     "lint": "eslint --ext .html,.js,.vue src example --fix",
     "prepare": "husky install",
-    "commit": "git cz"
+    "commit": "git cz",
+    "cypress:open": "cypress open"
   },
   "keywords": [
     "ui",
@@ -73,6 +74,7 @@
     "@babel/core": "^7.19.6",
     "@babel/preset-env": "^7.19.4",
     "better-scroll": "^2.5.0",
+    "cypress": "^9.7.0",
     "less": "^4.1.3",
     "less-loader": "^11.0.0"
   },
