@@ -10,7 +10,8 @@
     "test": "jest",
     "lint": "eslint --ext .html,.js,.vue src example --fix",
     "prepare": "husky install",
-    "commit": "git cz"
+    "commit": "git cz",
+    "changelog": "conventional-changelog -p custom-config -i CHANGELOG.md -s -n ./changelog-option.js && git add CHANGELOG.md"
   },
   "keywords": [
     "ui",
@@ -31,6 +32,10 @@
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0",
     "commitizen": "^4.2.5",
+    "compare-func": "^2.0.0",
+    "conventional-changelog": "^3.1.25",
+    "conventional-changelog-cli": "^2.2.2",
+    "conventional-changelog-custom-config": "^0.3.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.2.0",
     "css-minimizer-webpack-plugin": "^4.1.0",
