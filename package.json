@@ -64,7 +64,7 @@
     "terser-webpack-plugin": "^5.2.4",
     "url-loader": "^4.1.1",
     "vue": "^2.7.10",
-    "vue-jest": "^3.0.7",
+    "vue-jest": "^4.0.1",
     "vue-loader": "^15.9.8",
     "vue-router": "^3.5.2",
     "vue-template-compiler": "^2.6.14",
