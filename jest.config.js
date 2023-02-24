@@ -5,7 +5,7 @@ module.exports = {
   moduleFileExtensions: ['jsx', 'js', 'cjs', 'ts', 'tsx', 'vue', 'node'],
   // 转换器，根据后缀确定转换器
   transform: {
-    '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest',
+    '.*\\.(vue)$': '<rootDir>/node_modules/@vue/vue2-jest',
     '^.+\\jsx?$': '<rootDir>/node_modules/babel-jest'
   },
   // 别名目录
