@@ -33,30 +33,46 @@ module.exports = {
       },
       {
         test: /.(jpg|png|gif|jpeg|svg|webp)/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 40960,
-            name: 'img/[name].[hash:8].[ext]',
-            publicPath: '/',
-            esModule: false,
-            fallback: {
-              loader: 'file-loader'
-            }
-          }
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[name].[hash:8].[ext]'
         },
-        exclude: /node_modules/
+        exclude: /node_module/
       },
+      // {
+      //   test: /.(jpg|png|gif|jpeg|svg|webp)/,
+      //   use: {
+      //     loader: 'url-loader',
+      //     options: {
+      //       limit: 40960,
+      //       name: 'img/[name].[hash:8].[ext]',
+      //       publicPath: '/',
+      //       esModule: false,
+      //       fallback: {
+      //         loader: 'file-loader'
+      //       }
+      //     }
+      //   },
+      //   exclude: /node_modules/
+      // },
+      // {
+      //   test: /.(mp4|mp3|m3u8)/,
+      //   use: {
+      //     loader: 'file-loader',
+      //     options: {
+      //       esModule: false,
+      //       name: 'media/[name].[contenthash:8].[ext]'
+      //     }
+      //   },
+      //   exclude: /node_modules/
+      // },
       {
         test: /.(mp4|mp3|m3u8)/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            esModule: false,
-            name: 'media/[name].[contenthash:8].[ext]'
-          }
+        type: 'asset/resource',
+        generator: {
+          filename: 'media/[name].[contenthash:8].[ext]'
         },
-        exclude: /node_modules/
+        exclude: /node_module/
       },
       {
         test: /.(eot|ttf|woff2?)$/,
